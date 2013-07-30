@@ -1,0 +1,13 @@
+docs/
+obj/
+bin/
+*.layout
+*.swp
+*.swo
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+#Because MacOSX is stupid ;P
+*.DS_Store
