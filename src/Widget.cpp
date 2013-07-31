@@ -1,8 +1,9 @@
 #include <legui/Widget.h>
+#include <legui/Container.h>
 
 namespace legui
 {
-    Widget::Widget(Widget* parent)
+    Widget::Widget(Container* parent)
     {
         setParent(parent);
     }
@@ -10,6 +11,7 @@ namespace legui
     {
         if(m_parent)
             m_parent->updateSize();
+        m_parent->removeWidget(m_parentIt);
     }
     
     void Widget::onUpdate(float frametime)
@@ -32,11 +34,12 @@ namespace legui
     {
     
     }
-    void Widget::setParent(legui::Widget *parent)
+    void Widget::setParent(Container *parent)
     {
         m_parent = parent;
+        m_parentIt = parent->addWidget(this);
     }
-    Widget *Widget::getParent()
+    Container* Widget::getParent()
     {
         return m_parent;
     }

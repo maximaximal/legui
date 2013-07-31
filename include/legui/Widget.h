@@ -9,6 +9,9 @@
  */
 namespace legui
 {
+    class Container;
+
+
     /**
      * @brief Describes the standard interface to a widget.
      *
@@ -17,7 +20,7 @@ namespace legui
     class Widget : public sf::Drawable
     {
         public:
-            Widget(Widget *parent = 0);
+            Widget(Container *parent = 0);
             virtual ~Widget();
         
             /**
@@ -57,14 +60,14 @@ namespace legui
              *
              * @param parent The new widget parent.
              */
-            virtual void setParent(legui::Widget *parent);
+            virtual void setParent(Container *parent);
 
             /**
              * @brief Gets the parent of this widget.
              *
              * @return The widget parent.
              */
-            Widget* getParent();
+            Container* getParent();
             /**
              * @brief Gets the bounding box of this widget.
              *
@@ -74,6 +77,7 @@ namespace legui
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
             sf::FloatRect m_boundingBox;
-            Widget *m_parent;
+            Container *m_parent;
+            std::size_t m_parentIt;
     };
 };
