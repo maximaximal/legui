@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/max/Dokumente/Programmieren/Legui
 CMakeFiles/legui.dir/all:
 	$(MAKE) -f CMakeFiles/legui.dir/build.make CMakeFiles/legui.dir/depend
 	$(MAKE) -f CMakeFiles/legui.dir/build.make CMakeFiles/legui.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/max/Dokumente/Programmieren/Legui/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/max/Dokumente/Programmieren/Legui/CMakeFiles  1 2
 	@echo "Built target legui"
 .PHONY : CMakeFiles/legui.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/legui.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/legui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Dokumente/Programmieren/Legui/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Dokumente/Programmieren/Legui/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/legui.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/Dokumente/Programmieren/Legui/CMakeFiles 0
 .PHONY : CMakeFiles/legui.dir/rule

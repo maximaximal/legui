@@ -1,14 +1,16 @@
 #include <legui/Config.h>
 
+using namespace std;
+
 namespace legui
 {
     std::string Config::getString(const std::string &ID)
     {
-        return m_strings[ID];
+        return Config::m_strings[ID];
     }
     int Config::getInt(const std::string &ID)
     {
-        return m_ints[ID];
+        return Config::m_ints[ID];
     }
     float Config::getFloat(const std::string &ID)
     {

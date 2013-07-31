@@ -1,7 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics/Drawable.hpp>
-
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Window/Event.hpp>
 /**
  * @brief The main namespace of legui.
  */
@@ -15,7 +16,7 @@ namespace legui
     class Widget : public sf::Drawable
     {
         public:
-            Widget();
+            Widget(Widget *parent = 0);
             virtual ~Widget();
         
             /**
@@ -70,6 +71,7 @@ namespace legui
              */
             const sf::FloatRect& getBoundingBox();
         protected:
+            virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
             sf::FloatRect m_boundingBox;
             Widget *m_parent;
     };

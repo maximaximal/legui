@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <map>
 #include <SFML/Graphics/Color.hpp>
 
 namespace legui
@@ -28,10 +29,10 @@ namespace legui
             Config() {}
             ~Config() {}
 
-            static std::map<std::string, std::string> m_strings();
-            static std::map<std::string, int> m_ints();
-            static std::map<std::string, float> m_floats();
-            static std::map<std::string, bool> m_bools();
-            static std::map<std::string, sf::Color> m_colors();
-    }
+            static std::map<std::string, std::string> m_strings;
+            static std::map<std::string, int> m_ints;
+            static std::map<std::string, float> m_floats;
+            static std::map<std::string, bool> m_bools;
+            static std::map<std::string, sf::Color> m_colors;
+    };
 };
