@@ -19,4 +19,6 @@ if(SFML_FOUND)
     target_link_libraries(legui ${SFML_LIBRARIES})
 endif()
 
+list( APPEND CMAKE_CXX_FLAGS "-std=c++0x")
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/LeGUI)

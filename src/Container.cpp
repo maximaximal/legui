@@ -79,7 +79,7 @@ namespace legui
     }
     void Container::deleteWidget(std::size_t widget)
     {
-        if(widget < m_widgets.size)))
+        if(widget < m_widgets.size())
         {
             delete m_widgets[widget];
             m_widgets.erase(m_widgets.begin() + widget);
@@ -103,7 +103,7 @@ namespace legui
     }
     void Container::removeWidget(std::size_t widget)
     {
-        if(widget < m_widgets.size)))
+        if(widget < m_widgets.size())
         {
             m_widgets.erase(m_widgets.begin() + widget);
         }
