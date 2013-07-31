@@ -11,3 +11,11 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Widget.cpp)
 
 add_library(legui SHARED ${SOURCES})
+
+find_package(SFML 2 COMPONENTS system window graphics audio REQUIRED)
+if(SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+    target_link_libraries(legui ${SFML_LIBRARIES})
+endif()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/LeGUI)
