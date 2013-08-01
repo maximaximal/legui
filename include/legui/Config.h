@@ -14,6 +14,11 @@ namespace legui
     class Config
     {
         public:
+            /**
+             * @brief Loads the default, hardcoded values in the config.
+             */
+            static void loadDefaults();
+            
             static std::string getString(const std::string &ID);
             static int getInt(const std::string &ID);
             static bool getBool(const std::string &ID);

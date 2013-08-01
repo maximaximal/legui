@@ -4,13 +4,17 @@ using namespace std;
 
 namespace legui
 {
+    void Config::loadDefaults()
+    {
+        m_floats["STANDARD_HEIGHT"] = 20;
+    }
     std::string Config::getString(const std::string &ID)
     {
-        return Config::m_strings[ID];
+        return m_strings[ID];
     }
     int Config::getInt(const std::string &ID)
     {
-        return Config::m_ints[ID];
+        return m_ints[ID];
     }
     float Config::getFloat(const std::string &ID)
     {
