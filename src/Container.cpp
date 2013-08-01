@@ -116,4 +116,8 @@ namespace legui
     {
         return m_widgets;
     }
+    std::size_t Container::getSize()
+    {
+        return m_widgets.size();
+    }
 };

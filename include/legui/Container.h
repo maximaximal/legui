@@ -65,10 +65,18 @@ namespace legui
              * @return The pointer to the widget. (It is still owned by this container.)
              */
             Container* getWidget(std::size_t widget);
+            /**
+             * @brief Clears (deletes) the whole container.
+             */
             void clear();
+            /**
+             * @brief Gets the internal widget count (starts at 1).
+             *
+             * @return Internal widgets count.
+             */
+            std::size_t getSize();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-        private:
             std::vector<Widget*> m_widgets;
     };
 };
