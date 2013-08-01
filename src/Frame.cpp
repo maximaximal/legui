@@ -1,4 +1,5 @@
 #include <legui/Frame.h>
+#include <legui/Config.h>
 
 namespace legui
 {
@@ -6,6 +7,11 @@ namespace legui
         : Widget(parent)
     {
         m_rectangleShape = new sf::RectangleShape;
+
+        //Set the colors & the outline thickness from the config.
+            setOutlineColor(Config::getColor("FRAME_OUTLINE_COLOR"));
+            setFillColor(Config::getColor("FRAME_FILL_COLOR"));
+            setOutlineThickness(Config::getFloat("FRAME_OUTLINE_THICKNESS"));
     }
     Frame::~Frame()
     {

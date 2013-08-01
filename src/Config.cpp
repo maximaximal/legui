@@ -6,7 +6,12 @@ namespace legui
 {
     void Config::loadDefaults()
     {
-        m_floats["STANDARD_HEIGHT"] = 20;
+        //Default Floats
+            m_floats["STANDARD_HEIGHT"] = 20;
+            m_floats["FRAME_OUTLINE_THICKNESS"] = 0;
+        //Default Colors
+            m_colors["FRAME_OUTLINE_COLOR"] = sf::Color(120, 120, 120); //Darker Grey
+            m_colors["FRAME_FILL_COLOR"] = sf::Color(255, 255, 255, 0); //Transparent
     }
     std::string Config::getString(const std::string &ID)
     {
