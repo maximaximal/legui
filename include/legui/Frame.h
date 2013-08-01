@@ -58,7 +58,7 @@ namespace legui
              *
              * @return The outline color. 
              */
-            const sf::Color& getOutlineColor()
+            const sf::Color& getOutlineColor();
             /**
              * @brief Gets the fill color of the internal sf::RectnagleShape.
              *
