@@ -13,6 +13,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Config.cpp
     ${PROJECT_SOURCE_DIR}/src/HorizontalSplitter.cpp
     ${PROJECT_SOURCE_DIR}/src/Container.cpp
+    ${PROJECT_SOURCE_DIR}/src/Frame.cpp
     ${PROJECT_SOURCE_DIR}/src/Widget.cpp)
 
 add_library(legui SHARED ${SOURCES})
