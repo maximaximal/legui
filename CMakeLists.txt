@@ -4,6 +4,9 @@ project(LEGUI)
 #Set the cmake module path
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
+#Set the output directory
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(SOURCES
@@ -19,6 +22,5 @@ if(SFML_FOUND)
     target_link_libraries(legui ${SFML_LIBRARIES})
 endif()
 
-list( APPEND CMAKE_CXX_FLAGS "-std=c++0x")
+list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/LeGUI)

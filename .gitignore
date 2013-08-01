@@ -1,6 +1,7 @@
 docs/
 obj/
 bin/
+lib/
 *.layout
 *.swp
 *.swo
@@ -8,9 +9,6 @@ CMakeCache.txt
 CMakeFiles/
 Makefile
 cmake_install.cmake
-
-#All .so files (Libs aren't in the repo!)
-*.so
 
 #Because MacOSX is stupid ;P
 *.DS_Store
