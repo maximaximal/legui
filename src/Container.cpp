@@ -120,4 +120,4 @@ namespace legui
     {
         return m_widgets.size();
     }
-};
+}

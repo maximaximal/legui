@@ -40,4 +40,4 @@ namespace legui
             static std::map<std::string, bool> m_bools;
             static std::map<std::string, sf::Color> m_colors;
     };
-};
+}

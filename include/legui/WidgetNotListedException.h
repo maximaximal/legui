@@ -16,4 +16,4 @@ namespace legui
                 return("The widget queried for deletion is not in the container!");
             }
     };
-};
+}

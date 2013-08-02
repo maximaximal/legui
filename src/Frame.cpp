@@ -50,4 +50,4 @@ namespace legui
     {
         return m_rectangleShape->getOutlineThickness();
     }
-};
+}

@@ -80,4 +80,4 @@ namespace legui
             Container *m_parent;
             std::size_t m_parentIt;
     };
-};
+}

@@ -31,4 +31,4 @@ namespace legui
             m_boundingBox.height += it->getBoundingBox().height;
         }
     }
-};
+}

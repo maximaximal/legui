@@ -47,4 +47,4 @@ namespace legui
     {
         return m_boundingBox;
     }
-};
+}

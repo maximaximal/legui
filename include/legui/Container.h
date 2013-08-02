@@ -79,4 +79,4 @@ namespace legui
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
             std::vector<Widget*> m_widgets;
     };
-};
+}

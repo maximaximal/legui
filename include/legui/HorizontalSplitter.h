@@ -10,4 +10,4 @@ namespace legui
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
     };
-};
+}

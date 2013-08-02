@@ -76,4 +76,4 @@ namespace legui
         private:
             sf::RectangleShape *m_rectangleShape;
     };
-};
+}

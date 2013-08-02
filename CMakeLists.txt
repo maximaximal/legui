@@ -11,6 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Config.cpp
+    ${PROJECT_SOURCE_DIR}/src/Clickable.cpp
     ${PROJECT_SOURCE_DIR}/src/HorizontalSplitter.cpp
     ${PROJECT_SOURCE_DIR}/src/Container.cpp
     ${PROJECT_SOURCE_DIR}/src/Frame.cpp
@@ -24,5 +25,5 @@ if(SFML_FOUND)
     target_link_libraries(legui ${SFML_LIBRARIES})
 endif()
 
-list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
+list(APPEND CMAKE_CXX_FLAGS "-std=c++11 -pedantic")
 
