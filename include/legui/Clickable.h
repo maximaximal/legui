@@ -15,17 +15,23 @@ namespace legui
         public:
             Clickable(Container *parent = 0);
             /**
+             * @brief Checks if the widget is currently clicked (pressed).
+             *
+             * @return The current state.
+             */
+            bool isPressed()
+            /**
              * @brief Immediate GUI hook to detect if the widget is clicked.
              *
              * @return True if the button was pressed in this frame.
              */
-            bool isButtonPressed();
+            bool pressed();
             /**
              * @brief Immediate GUI hook to detect if the widget is released.
              *
              * @return True if the button was released in this frame.
              */
-            bool isButtonReleased();
+            bool released();
             /**
              * @brief Triggered when the mouse has clicked in the bounding box.
              *
@@ -48,6 +54,6 @@ namespace legui
             Nano::signal<void()> m_onPressed;
             Nano::signal<void()> m_onUnPressed;
 
-            bool m_isButtonPressed, m_isButtonUnpressed;
+            bool m_pressed, m_isButtonPressed, m_isButtonUnpressed;
     };
 }

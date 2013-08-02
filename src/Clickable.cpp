@@ -7,6 +7,7 @@ namespace legui
     {
         m_isButtonPressed = false;
         m_isButtonUnpressed = false;
+        m_pressed = false;
     }
     void Clickable::onUpdate(float frametime)
     {
@@ -22,6 +23,7 @@ namespace legui
                 if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                 {
                     m_isButtonPressed = true;
+                    m_pressed = true;
                     m_onPressed();
                 }
             }
@@ -33,19 +35,24 @@ namespace legui
                 if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                 {
                     m_isButtonUnpressed = true;
+                    m_pressed = false;
                     m_onUnPressed();
                 }
             }
         }
         return false;
     }
-    bool Clickable::isButtonPressed()
+    bool Clickable::pressed()
     {
         return m_isButtonPressed;
     }
-    bool Clickable::isButtonReleased()
+    bool Clickable::released()
     {
         return m_isButtonUnpressed;
+    }
+    bool Clickable::isPressed()
+    {
+        return m_pressed;
     }
     Nano::signal<void()>& Clickable::onPressed()
     {
