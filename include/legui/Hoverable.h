@@ -42,7 +42,7 @@ namespace legui
              *
              * @return The onHoverLost signal.
              */
-            Nano::signal<void()>& onHoverLost()
+            Nano::signal<void()>& onHoverLost();
 
             /**
              * @brief Sets the current hover state.

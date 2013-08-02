@@ -19,7 +19,7 @@ namespace legui
              *
              * @return The current state.
              */
-            bool isPressed()
+            bool isPressed();
             /**
              * @brief Immediate GUI hook to detect if the widget is clicked.
              *
@@ -50,6 +50,7 @@ namespace legui
              * @brief Resets the internal pressed states every frame.
              */
             virtual void onUpdate(float frametime);
+            void setPressed(bool state);
         private:
             Nano::signal<void()> m_onPressed;
             Nano::signal<void()> m_onUnPressed;

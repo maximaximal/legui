@@ -12,11 +12,17 @@ namespace legui
     }
     void Focusable::onUpdate(float frametime)
     {
+        //Update the hoverable widget.
+        Hoverable::onUpdate(frametime);
+
         m_focusLost = false;
         m_focusGained = false;
     }
     bool Focusable::onEvent(const sf::Event &e)
     {
+        //Update the hoverable widget.
+        Hoverable::onEvent(e);
+
         if(e.type == sf::Event::KeyPressed)
         {
             if(isFocused())
@@ -35,17 +41,23 @@ namespace legui
     }
     void Focusable::setFocus(bool state)
     {
-        m_isFocused = state;
-        if(state)
+        if(m_isFocused)
         {
-            m_focusGained = true;
-            m_onFocusGained();
+            if(!state)
+            {
+                m_focusLost = true;
+                m_onFocusLost();
+            }
         }
         else
         {
-            m_focusLost = true;
-            m_onFocusLost();
+            if(state)
+            {
+                m_focusGained = true;
+                m_onFocusGained();
+            }
         }
+        m_isFocused = state;
     }
     void Focusable::setNextFocusable(Focusable *next)
     {

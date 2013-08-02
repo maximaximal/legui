@@ -11,20 +11,41 @@ namespace legui
     }
     void Clickable::onUpdate(float frametime)
     {
+        //Update the focusable widget.
+        Focusable::onUpdate(frametime);
+
         m_isButtonPressed = false;
         m_isButtonUnpressed = false;
     }
     bool Clickable::onEvent(const sf::Event &e)
     {
+        //Update the focusable widget.
+        Focusable::onEvent(e);
+        
+        if(isFocused())
+        {
+            if(e.type == sf::Event::KeyPressed)
+            {
+                if(e.key.code == sf::Keyboard::Return)
+                {
+                    setPressed(true);
+                }
+            }
+            if(e.type == sf::Event::KeyReleased)
+            {
+                if(e.key.code == sf::Keyboard::Return)
+                {
+                    setPressed(false);
+                }
+            }
+        }
         if(e.type == sf::Event::MouseButtonPressed)
         {
             if(e.mouseButton.button == sf::Mouse::Left)
             {
                 if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                 {
-                    m_isButtonPressed = true;
-                    m_pressed = true;
-                    m_onPressed();
+                    setPressed(true);
                 }
             }
         }
@@ -34,13 +55,31 @@ namespace legui
             {
                 if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                 {
-                    m_isButtonUnpressed = true;
-                    m_pressed = false;
-                    m_onUnPressed();
+                    setPressed(false);
                 }
             }
         }
         return false;
+    }
+    void Clickable::setPressed(bool state)
+    {
+        if(m_pressed)
+        {
+            if(!state)
+            {
+                m_isButtonUnpressed = true;
+                m_onUnPressed();
+            }
+        }
+        else
+        {
+            if(state)
+            {
+                m_isButtonPressed = true;
+                m_onPressed();
+            }
+        }
+        m_pressed = state;
     }
     bool Clickable::pressed()
     {

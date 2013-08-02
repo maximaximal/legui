@@ -61,6 +61,22 @@ namespace legui
     }
     void Hoverable::setHover(bool state)
     {
+        if(m_hover)
+        {
+            if(!state)
+            {
+                m_onHoverLost();
+                m_hoverLost = true;
+            }
+        }
+        else
+        {
+            if(state)
+            {
+                m_onHoverGained();
+                m_hoverGained = true;
+            }
+        }
         m_hover = state;
     }
 }
