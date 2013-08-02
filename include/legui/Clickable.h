@@ -56,6 +56,15 @@ namespace legui
              * @param state The pressed state.
              */
             void setPressed(bool state);
+        protected:
+            /**
+             * @brief Derivable function for the clicked signal.
+             */
+            virtual void D_onClicked();
+            /**
+             * @brief Derivable function for the released signal.
+             */
+            virtual void D_onReleased();
         private:
             Nano::signal<void()> m_onPressed;
             Nano::signal<void()> m_onUnPressed;

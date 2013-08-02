@@ -47,6 +47,7 @@ namespace legui
             {
                 m_focusLost = true;
                 m_onFocusLost();
+                D_onFocusLost();
             }
         }
         else
@@ -55,6 +56,7 @@ namespace legui
             {
                 m_focusGained = true;
                 m_onFocusGained();
+                D_onFocusGained();
             }
         }
         m_isFocused = state;
@@ -82,5 +84,13 @@ namespace legui
     Nano::signal<void()>& Focusable::onFocusLost()
     {
         return m_onFocusLost;
+    }
+    void Focusable::D_onFocusGained()
+    {
+    
+    }
+    void Focusable::D_onFocusLost()
+    {
+    
     }
 }

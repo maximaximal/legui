@@ -48,6 +48,15 @@ namespace legui
              * @brief Sets the current hover state.
              */
             void setHover(bool state);
+        protected:
+            /**
+             * @brief Derivable function for the hover gained signal.
+             */
+            virtual void D_onHoverGained();
+            /**
+             * @brief Derivable function for the hover lost signal.
+             */
+            virtual void D_onHoverLost();
         private:
             bool m_hoverGained;
             bool m_hoverLost;

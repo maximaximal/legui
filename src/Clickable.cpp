@@ -69,6 +69,7 @@ namespace legui
             {
                 m_isButtonUnpressed = true;
                 m_onUnPressed();
+                D_onReleased();
             }
         }
         else
@@ -77,6 +78,7 @@ namespace legui
             {
                 m_isButtonPressed = true;
                 m_onPressed();
+                D_onClicked();
             }
         }
         m_pressed = state;
@@ -100,5 +102,13 @@ namespace legui
     Nano::signal<void()>& Clickable::onUnPressed()
     {
         return m_onUnPressed;
+    }
+    void Clickable::D_onClicked()
+    {
+    
+    }
+    void Clickable::D_onReleased()
+    {
+    
     }
 }

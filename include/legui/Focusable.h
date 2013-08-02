@@ -52,6 +52,15 @@ namespace legui
              * @param state Focus state.
              */
             void setFocus(bool state);
+        protected:
+            /**
+             * @brief Derivable function for the focus gained signal.
+             */
+            virtual void D_onFocusGained();
+            /**
+             * @brief Derivable function for the focus lost signal.
+             */
+            virtual void D_onFocusLost();
         private:
             bool m_isFocused;
             bool m_focusGained;

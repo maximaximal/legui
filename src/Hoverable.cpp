@@ -57,6 +57,7 @@ namespace legui
             {
                 m_onHoverLost();
                 m_hoverLost = true;
+                D_onHoverLost();
             }
         }
         else
@@ -65,8 +66,17 @@ namespace legui
             {
                 m_onHoverGained();
                 m_hoverGained = true;
+                D_onHoverGained();
             }
         }
         m_hover = state;
+    }
+    void Hoverable::D_onHoverGained()
+    {
+    
+    }
+    void Hoverable::D_onHoverLost()
+    {
+        
     }
 }
