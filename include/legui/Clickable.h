@@ -5,6 +5,11 @@
 
 namespace legui
 {
+    /**
+     * @brief This widget is clickable (with the mouse).
+     *
+     * When the widget is focused, the Return key also triggers the signals.
+     */
     class Clickable : public Focusable
     {
         public:
