@@ -1,13 +1,14 @@
 #pragma once
 
 #include <legui/nano_signal_slot.hpp>
-#include <legui/Widget.h>
+#include <legui/Focusable.h>
 
 namespace legui
 {
-    class Clickable : public Widget
+    class Clickable : public Focusable
     {
         public:
+            Clickable(Container *parent = 0);
             /**
              * @brief Immediate GUI hook to detect if the widget is clicked.
              *

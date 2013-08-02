@@ -12,6 +12,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Config.cpp
     ${PROJECT_SOURCE_DIR}/src/Clickable.cpp
+    ${PROJECT_SOURCE_DIR}/src/Focusable.cpp
+    ${PROJECT_SOURCE_DIR}/src/Hoverable.cpp
     ${PROJECT_SOURCE_DIR}/src/HorizontalSplitter.cpp
     ${PROJECT_SOURCE_DIR}/src/Container.cpp
     ${PROJECT_SOURCE_DIR}/src/Frame.cpp

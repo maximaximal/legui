@@ -2,6 +2,12 @@
 
 namespace legui
 {
+    Clickable::Clickable(Container *parent)
+        : Focusable(parent)
+    {
+        m_isButtonPressed = false;
+        m_isButtonUnpressed = false;
+    }
     void Clickable::onUpdate(float frametime)
     {
         m_isButtonPressed = false;

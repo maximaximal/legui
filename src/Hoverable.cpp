@@ -1,0 +1,66 @@
+#include <legui/Hoverable.h>
+
+namespace legui
+{
+    Hoverable::Hoverable(Container *parent)
+        : Widget(parent)
+    {
+        m_hoverGained = false;
+        m_hoverLost = false;
+        m_hover = false;
+    }
+    void Hoverable::onUpdate(float frametime)
+    {
+        m_hoverGained = false;
+        m_hoverLost = false;
+    }
+    bool Hoverable::onEvent(const sf::Event &e)
+    {
+        if(e.type == sf::Event::MouseMoved)
+        {
+            if(m_boundingBox.contains(e.mouseMove.x, e.mouseMove.y))
+            {
+                if(!m_hover)
+                {
+                    m_hover = true;
+                    m_hoverGained = true;
+                    m_onHoverGained();
+                }
+            }
+            else
+            {
+                if(m_hover)
+                {
+                    m_hover = false;
+                    m_hoverLost = true;
+                    m_onHoverLost();
+                }
+            }
+        }
+        return false;
+    }
+    bool Hoverable::isHovered()
+    {
+        return m_hover;
+    }
+    bool Hoverable::hoverGained()
+    {
+        return m_hoverGained;
+    }
+    bool Hoverable::hoverLost()
+    {
+        return m_hoverLost;
+    }
+    Nano::signal<void()>& Hoverable::onHoverGained()
+    {
+        return m_onHoverGained;
+    }
+    Nano::signal<void()>& Hoverable::onHoverLost()
+    {
+        return m_onHoverLost;
+    }
+    void Hoverable::setHover(bool state)
+    {
+        m_hover = state;
+    }
+}
