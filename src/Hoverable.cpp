@@ -20,21 +20,11 @@ namespace legui
         {
             if(m_boundingBox.contains(e.mouseMove.x, e.mouseMove.y))
             {
-                if(!m_hover)
-                {
-                    m_hover = true;
-                    m_hoverGained = true;
-                    m_onHoverGained();
-                }
+                setHover(true);
             }
             else
             {
-                if(m_hover)
-                {
-                    m_hover = false;
-                    m_hoverLost = true;
-                    m_onHoverLost();
-                }
+                setHover(false);
             }
         }
         return false;

@@ -50,6 +50,11 @@ namespace legui
              * @brief Resets the internal pressed states every frame.
              */
             virtual void onUpdate(float frametime);
+            /**
+             * @brief Sets the current pressed-state of the widget.
+             *
+             * @param state The pressed state.
+             */
             void setPressed(bool state);
         private:
             Nano::signal<void()> m_onPressed;
