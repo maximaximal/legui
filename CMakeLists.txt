@@ -11,6 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Config.cpp
+    ${PROJECT_SOURCE_DIR}/src/MouseMoveListener.cpp
     ${PROJECT_SOURCE_DIR}/src/Clickable.cpp
     ${PROJECT_SOURCE_DIR}/src/Focusable.cpp
     ${PROJECT_SOURCE_DIR}/src/Hoverable.cpp
