@@ -5,6 +5,11 @@
 
 namespace legui
 {
+    /**
+     * @brief Base class for every widget that can hold other widgets.
+     *
+     * All container widgets have to derive from this!.
+     */
     class Container : public Widget
     {
         public:
