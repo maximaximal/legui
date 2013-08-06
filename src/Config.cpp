@@ -9,6 +9,12 @@ namespace legui
         //Default Floats
             m_floats["STANDARD_HEIGHT"] = 20;
             m_floats["FRAME_OUTLINE_THICKNESS"] = 0;
+        
+        //Scrollbar
+            m_floats["SCROLLBAR_WIDTH"] = 8;
+            m_floats["SCROLLBAR_MIN_LENGHT"] = 100;
+            m_bools["SCROLLBAR_HAS_MIDDLE_LINES"] = true;
+            m_colors["SCROLLBAR_MIDDLE_LINES_COLOR"] = sf::Color(40, 40, 40);
         //Default Colors
             m_colors["FRAME_OUTLINE_COLOR"] = sf::Color(120, 120, 120); //Darker Grey
             m_colors["FRAME_FILL_COLOR"] = sf::Color(255, 255, 255, 0); //Transparent
