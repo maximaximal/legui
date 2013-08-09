@@ -6,6 +6,8 @@
 
 namespace legui
 {
+    class FontManagerAbstract;
+
     /**
      * @brief Saves the GUI configuration.
      *
@@ -30,14 +32,19 @@ namespace legui
             static void setFloat(const std::string &ID, float value);
             static void setBool(const std::string &ID, bool value);
             static void setColor(const std::string &ID, const sf::Color &value);
+
+            static void setFontManager(FontManagerAbstract *fontManager);
+            static FontManagerAbstract* getFontManager();
         private:
-            Config() {}
-            ~Config() {}
+            Config();
+            ~Config();
 
             static std::map<std::string, std::string> m_strings;
             static std::map<std::string, int> m_ints;
             static std::map<std::string, float> m_floats;
             static std::map<std::string, bool> m_bools;
             static std::map<std::string, sf::Color> m_colors;
+
+            static FontManagerAbstract *m_fontManager;
     };
 }

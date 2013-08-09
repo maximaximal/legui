@@ -32,7 +32,7 @@ namespace legui
     }
     void Widget::updateSize()
     {
-    
+        m_parent->updateSize();
     }
     void Widget::setParent(Container *parent)
     {

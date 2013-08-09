@@ -1,9 +1,19 @@
 #include <legui/Config.h>
-
+#include <legui/FontManager.h>
 using namespace std;
 
 namespace legui
 {
+    Config::Config()
+    {
+        //Initialize the default font manager
+            m_fontManager = new FontManager();
+    }
+    Config::~Config()
+    {
+        if(m_fontManager != 0)
+            delete m_fontManager;
+    }
     void Config::loadDefaults()
     {
         //Default Floats
@@ -15,9 +25,16 @@ namespace legui
             m_floats["SCROLLBAR_MIN_LENGHT"] = 100;
             m_bools["SCROLLBAR_HAS_MIDDLE_LINES"] = true;
             m_colors["SCROLLBAR_MIDDLE_LINES_COLOR"] = sf::Color(40, 40, 40);
+        //Label
+            m_ints["DEFAULT_FONT_SIZE"] = 14;
+            m_colors["DEFAULT_FONT_COLOR"] = sf::Color(233, 233, 233);
+            m_strings["DEFAULT_FONT"] = "Data/Fonts/DroidSans.ttf";
+            m_bools["LABEL_PIXELPERFECT_POSITION"] = true;
+            m_bools["LABEL_RECT_BORDER"] = false;
         //Default Colors
             m_colors["FRAME_OUTLINE_COLOR"] = sf::Color(120, 120, 120); //Darker Grey
             m_colors["FRAME_FILL_COLOR"] = sf::Color(255, 255, 255, 0); //Transparent
+    
     }
     std::string Config::getString(const std::string &ID)
     {
@@ -59,5 +76,17 @@ namespace legui
     void Config::setColor(const std::string &ID, const sf::Color &value)
     {
         m_colors[ID] = value;
+    }
+    void Config::setFontManager(FontManagerAbstract *fontManager)
+    {
+        if(m_fontManager != 0)
+        {
+            delete m_fontManager;
+        }
+        m_fontManager = fontManager;
+    }
+    FontManagerAbstract* Config::getFontManager()
+    {
+        return m_fontManager;
     }
 }
