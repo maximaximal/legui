@@ -9,7 +9,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-set(legui_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include)
+set(legui_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/include" PARENT_SCOPE)
 
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Config.cpp
