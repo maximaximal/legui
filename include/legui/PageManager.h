@@ -14,14 +14,14 @@ namespace legui
      * also are allowed to delete a specific page, to replace the current one, or
      * to delete the previous one.
      */
-    class PageManager : public Container
+    class PageManager : protected Container
     {
         public:
             PageManager();
-            virtual ~Page();
+            virtual ~PageManager();
 
             virtual void onUpdate(float frametime);
-            virtual void onEvent(const sf::Event &e);
+            virtual bool onEvent(const sf::Event &e);
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
             

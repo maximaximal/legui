@@ -20,6 +20,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/Frame.cpp
     ${PROJECT_SOURCE_DIR}/src/Label.cpp
     ${PROJECT_SOURCE_DIR}/src/FontManager.cpp
+    ${PROJECT_SOURCE_DIR}/src/PageManager.cpp
     ${PROJECT_SOURCE_DIR}/src/Widget.cpp)
 
 add_library(legui SHARED ${SOURCES})
