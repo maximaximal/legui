@@ -69,15 +69,15 @@ namespace legui
     {
         m_nextFocusable = next;
     }
-    bool Focusable::isFocused()
+    bool Focusable::isFocused() const
     {
         return m_isFocused;
     }
-    bool Focusable::gainedFox()
+    bool Focusable::gainedFox() const
     {
         return m_focusGained;
     }
-    bool Focusable::lostFocus()
+    bool Focusable::lostFocus() const
     {
         return m_focusLost;
     }

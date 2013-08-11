@@ -18,15 +18,15 @@ namespace legui
             /**
              * @brief Checks if the widget is currently focused.
              */
-            bool isFocused();
+            bool isFocused() const;
             /**
              * @brief Immediate mode hook for the gained focus signal.
              */
-            bool gainedFox();
+            bool gainedFox() const;
             /**
              * @brief Immediate mode hook for the lost focus signal.
              */
-            bool lostFocus();
+            bool lostFocus() const;
             /**
              * @brief Is called when the focus comes to this widget.
              *
