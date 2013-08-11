@@ -8,6 +8,8 @@ namespace legui
     {
         m_label = new Label(parent);
         m_frame = new Frame(parent);
+        m_frame->setOutlineColor(Config::getColor("BUTTON_OUTLINE"));
+        m_frame->setFillColor(Config::getColor("BUTTON_FILL"));
     }
     PushButton::~PushButton()
     {
