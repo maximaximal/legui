@@ -61,7 +61,10 @@ namespace legui
              * @param parent The new widget parent.
              */
             virtual void setParent(Container *parent);
-
+            /**
+             * @brief Removes (deletes) the widget from its parent.
+             */
+            void removeFromParent();
             /**
              * @brief Gets the parent of this widget.
              *

@@ -9,11 +9,13 @@ namespace legui
     }
     Widget::~Widget()
     {
-        if(m_parent)
-            m_parent->updateSize();
-        m_parent->removeWidget(m_parentIt);
+
     }
-    
+    void Widget::removeFromParent()
+    {
+        if(m_parent)
+            m_parent->removeWidget(m_parentIt);
+    }
     void Widget::onUpdate(float frametime)
     {
     
