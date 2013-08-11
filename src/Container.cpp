@@ -112,6 +112,10 @@ namespace legui
             throw(WidgetNotListedException());
         }
     }
+    void Container::setPageManager(PageManager *pageManager)
+    {
+        m_pageManager = pageManager;
+    }
     std::vector<Widget*>& Container::getWidgets()
     {
         return m_widgets;
@@ -119,5 +123,9 @@ namespace legui
     std::size_t Container::getSize()
     {
         return m_widgets.size();
+    }
+    PageManager* Container::getPageManager()
+    {
+        return m_pageManager;
     }
 }
