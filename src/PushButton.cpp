@@ -39,7 +39,7 @@ namespace legui
         m_frame->setBoundingBox(box);
         sf::FloatRect middle = box;
         middle.left = box.left + box.width / 2 - m_label->getBoundingBox().width / 2;
-        middle.top = box.top + box.height / - m_label->getBoundingBox().height / 2;
+        middle.top = box.top + box.height / 2 - m_label->getBoundingBox().height / 2;
         m_label->setBoundingBox(middle);
     }
     void PushButton::updateSize()

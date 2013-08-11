@@ -14,7 +14,7 @@ namespace legui
     void CenteredStrip::setBoundingBox(const sf::FloatRect &box)
     {
         sf::FloatRect middle;
-        float y = 0;
+        float y = box.top;
         for(auto &it : m_widgets)
         {
             middle = it->getBoundingBox();
