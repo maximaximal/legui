@@ -28,6 +28,7 @@ namespace legui
             {
                 if(e.key.code == sf::Keyboard::Return)
                 {
+                    m_relPos = sf::Vector2f(0, 0);
                     setPressed(true);
                 }
             }
@@ -35,6 +36,7 @@ namespace legui
             {
                 if(e.key.code == sf::Keyboard::Return)
                 {
+                    m_relPos = sf::Vector2f(0, 0);
                     setPressed(false);
                 }
             }
@@ -45,6 +47,7 @@ namespace legui
             {
                 if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                 {
+                    m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
                     setPressed(true);
                 }
             }
@@ -55,6 +58,7 @@ namespace legui
             {
                 if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                 {
+                    m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
                     setPressed(false);
                 }
             }
@@ -68,8 +72,8 @@ namespace legui
             if(!state)
             {
                 m_isButtonUnpressed = true;
-                m_onUnPressed();
-                D_onReleased();
+                m_onUnPressed.emit(m_relPos);
+                D_onReleased(m_relPos);
             }
         }
         else
@@ -77,8 +81,8 @@ namespace legui
             if(state)
             {
                 m_isButtonPressed = true;
-                m_onPressed();
-                D_onClicked();
+                m_onPressed.emit(m_relPos);
+                D_onClicked(m_relPos);
             }
         }
         m_pressed = state;
@@ -95,19 +99,19 @@ namespace legui
     {
         return m_pressed;
     }
-    Nano::signal<void()>& Clickable::onPressed()
+    Nano::signal<void(const sf::Vector2f&)>& Clickable::onPressed()
     {
         return m_onPressed;
     }
-    Nano::signal<void()>& Clickable::onUnPressed()
+    Nano::signal<void(const sf::Vector2f&)>& Clickable::onUnPressed()
     {
         return m_onUnPressed;
     }
-    void Clickable::D_onClicked()
+    void Clickable::D_onClicked(const sf::Vector2f &relPos)
     {
     
     }
-    void Clickable::D_onReleased()
+    void Clickable::D_onReleased(const sf::Vector2f &relPos)
     {
     
     }

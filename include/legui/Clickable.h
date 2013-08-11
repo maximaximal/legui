@@ -33,17 +33,23 @@ namespace legui
              */
             bool released();
             /**
+             * @brief Get relative position of the click (relative to upper left)
+             *
+             * @return The relative position.
+             */
+            const sf::Vector2f& getRelPos();
+            /**
              * @brief Triggered when the mouse has clicked in the bounding box.
              *
              * @return The signal to connect to.
              */
-            Nano::signal<void()>& onPressed();
+            Nano::signal<void(const sf::Vector2f&)>& onPressed();
             /**
              * @brief Triggered when the mouse has un-pressed the previously clicked key.
              *
              * @return The signal to connect to.
              */
-            Nano::signal<void()>& onUnPressed();
+            Nano::signal<void(const sf::Vector2f&)>& onUnPressed();
 
             virtual bool onEvent(const sf::Event &e);
             /**
@@ -60,15 +66,16 @@ namespace legui
             /**
              * @brief Derivable function for the clicked signal.
              */
-            virtual void D_onClicked();
+            virtual void D_onClicked(const sf::Vector2f &relPos);
             /**
              * @brief Derivable function for the released signal.
              */
-            virtual void D_onReleased();
+            virtual void D_onReleased(const sf::Vector2f &relPos);
         private:
-            Nano::signal<void()> m_onPressed;
-            Nano::signal<void()> m_onUnPressed;
+            Nano::signal<void(const sf::Vector2f&)> m_onPressed;
+            Nano::signal<void(const sf::Vector2f&)> m_onUnPressed;
 
             bool m_pressed, m_isButtonPressed, m_isButtonUnpressed;
+            sf::Vector2f m_relPos;
     };
 }
