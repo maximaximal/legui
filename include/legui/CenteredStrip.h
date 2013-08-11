@@ -13,7 +13,7 @@ namespace legui
     {
         public:
             CenteredStrip(Container *parent = 0);
-            virtual ~CenteredStrip()
+            virtual ~CenteredStrip();
             /**
              * @brief Only alignes the elements, doesn't give them a new size!
              */

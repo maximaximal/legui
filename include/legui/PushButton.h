@@ -9,7 +9,7 @@ namespace legui
     /**
      * @brief Describes a clickable button consisting of a label & a frame.
      */
-    class PushButton : public Clickable, public Frame
+    class PushButton : public Clickable
     {
         public:
             PushButton(Container *parent = 0);
@@ -24,6 +24,10 @@ namespace legui
              * @brief Returns the internal label.
              */
             Label* getLabel();
+            /**
+             * @brief Returns the internal frame.
+             */
+            Frame* getFrame();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
@@ -33,6 +37,7 @@ namespace legui
             virtual void D_onHoverLost();
         private:
             Label *m_label;
+            Frame *m_frame;
     };
 }
 
