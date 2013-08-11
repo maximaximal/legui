@@ -14,26 +14,37 @@ namespace legui
     }
     void PageManager::onUpdate(float frametime)
     {
-        m_widgets[m_currentPage]->onUpdate(frametime);
+        if(m_currentPage < m_widgets.size())
+            m_widgets[m_currentPage]->onUpdate(frametime);
     }
     bool PageManager::onEvent(const sf::Event &e)
     {
-        return m_widgets[m_currentPage]->onEvent(e);
+        if(m_currentPage < m_widgets.size())
+            return m_widgets[m_currentPage]->onEvent(e);
+        else
+            return false;
     }
     void PageManager::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
-        target.draw(*m_widgets[m_currentPage], states);
+        if(m_currentPage < m_widgets.size())
+            target.draw(*m_widgets[m_currentPage], states);
     }
     void PageManager::setBoundingBox(const sf::FloatRect &box)
     {
-        m_widgets[m_currentPage]->setBoundingBox(box);
+        if(m_currentPage < m_widgets.size())
+        {
+            m_widgets[m_currentPage]->setBoundingBox(box);
+        }
         m_screenSizeChanged = true;
     }
     void PageManager::updateSize()
     {
-        m_widgets[m_currentPage]->updateSize();
+        if(m_currentPage < m_widgets.size())
+        {
+            m_widgets[m_currentPage]->updateSize();
+            m_boundingBox = m_widgets[m_currentPage]->getBoundingBox();
+        }
         m_updateSizeRequested = true;
-        m_boundingBox = m_widgets[m_currentPage]->getBoundingBox();
     }
     void PageManager::push(Container *container)
     {
@@ -43,14 +54,22 @@ namespace legui
     }
     void PageManager::replaceCurrent(Container *container)
     {
-        delete m_widgets[m_currentPage];
-        m_widgets[m_currentPage] = container;
-        m_widgets[m_currentPage]->setBoundingBox(m_boundingBox);
-        container->setPageManager(this);
+        if(m_currentPage < m_widgets.size())
+        {
+            delete m_widgets[m_currentPage];
+            m_widgets[m_currentPage] = container;
+            m_widgets[m_currentPage]->setBoundingBox(m_boundingBox);
+            container->setPageManager(this);
+        }
+        else
+        {
+            this->push(container);
+        }
     }
     void PageManager::popUnder()
     {
-        pop(m_currentPage - 1);
+        if(m_currentPage > 1 && m_currentPage < m_widgets.size())
+            pop(m_currentPage - 1);
     }
     void PageManager::pop(std::size_t page)
     {
@@ -66,6 +85,7 @@ namespace legui
     }
     void PageManager::pop()
     {
+        if(m_currentPage < m_widgets.size())
         pop(m_currentPage);
     }
     Container* PageManager::top()
