@@ -21,23 +21,27 @@ namespace legui
     bool Focusable::onEvent(const sf::Event &e)
     {
         //Update the hoverable widget.
-        Hoverable::onEvent(e);
+        bool block = Hoverable::onEvent(e);
 
-        if(e.type == sf::Event::KeyPressed)
+        if(!block)
         {
-            if(isFocused())
+            if(e.type == sf::Event::KeyPressed)
             {
-                if(e.key.code == sf::Keyboard::Tab)
+                if(isFocused())
                 {
-                    if(m_nextFocusable != 0)
+                    if(e.key.code == sf::Keyboard::Tab)
                     {
-                        m_nextFocusable->setFocus(true);
-                        this->setFocus(false);
+                        if(m_nextFocusable != 0)
+                        {
+                            m_nextFocusable->setFocus(true);
+                            this->setFocus(false);
+                            block = true;
+                        }
                     }
                 }
             }
         }
-        return false;
+        return block;
     }
     void Focusable::setFocus(bool state)
     {

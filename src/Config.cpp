@@ -19,7 +19,11 @@ namespace legui
         //Default Floats
             m_floats["STANDARD_HEIGHT"] = 20;
             m_floats["FRAME_OUTLINE_THICKNESS"] = 0;
-        
+        //Cursor
+            m_floats["CURSOR_WIDTH"] = 2;
+            m_floats["CUROSR_BLINK_RATE"] = 0.53;
+            m_colors["CURSOR_ACTIVE"] = sf::Color::White;
+            m_colors["CURSOR_UNACTIVE"] = sf::Color::Transparent;
         //Scrollbar
             m_floats["SCROLLBAR_WIDTH"] = 8;
             m_floats["SCROLLBAR_MIN_LENGHT"] = 100;
@@ -34,7 +38,6 @@ namespace legui
         //Default Colors
             m_colors["FRAME_OUTLINE_COLOR"] = sf::Color(120, 120, 120); //Darker Grey
             m_colors["FRAME_FILL_COLOR"] = sf::Color(255, 255, 255, 0); //Transparent
-    
     }
     std::string Config::getString(const std::string &ID)
     {

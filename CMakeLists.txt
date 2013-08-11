@@ -24,6 +24,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/FontManager.cpp
     ${PROJECT_SOURCE_DIR}/src/PageManager.cpp
     ${PROJECT_SOURCE_DIR}/src/FontStyle.cpp
+    ${PROJECT_SOURCE_DIR}/src/LineEdit.cpp
+    ${PROJECT_SOURCE_DIR}/src/Cursor.cpp
     ${PROJECT_SOURCE_DIR}/src/Widget.cpp)
 
 add_library(legui SHARED ${SOURCES})
