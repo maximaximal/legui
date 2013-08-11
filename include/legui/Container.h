@@ -5,6 +5,7 @@
 
 namespace legui
 {
+    class PageManager;
     /**
      * @brief Base class for every widget that can hold other widgets.
      *
