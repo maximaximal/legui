@@ -8,7 +8,7 @@ namespace legui
     Container::Container(Container *parent)
         : Widget(parent)
     {
-
+        m_pageManager = 0;
     }
     Container::~Container()
     {

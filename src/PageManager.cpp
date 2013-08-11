@@ -38,12 +38,15 @@ namespace legui
     void PageManager::push(Container *container)
     {
         m_currentPage = this->addWidget(container);
+        container->setBoundingBox(m_boundingBox);
+        container->setPageManager(this);
     }
     void PageManager::replaceCurrent(Container *container)
     {
         delete m_widgets[m_currentPage];
         m_widgets[m_currentPage] = container;
         m_widgets[m_currentPage]->setBoundingBox(m_boundingBox);
+        container->setPageManager(this);
     }
     void PageManager::popUnder()
     {

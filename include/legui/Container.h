@@ -57,6 +57,12 @@ namespace legui
              */
             void removeWidget(std::size_t widget);
             /**
+             * @brief Sets the page manager which manages this container.
+             *
+             * @param pageManager The managing page manager. 
+             */
+            void setPageManager(PageManager *pageManager);
+            /**
              * @brief Gets the internal widget vector.
              *
              * @return All widgets of this container.
@@ -80,8 +86,17 @@ namespace legui
              * @return Internal widgets count.
              */
             std::size_t getSize();
+            /**
+             * @brief Returns the page manager that controls this container.
+             *
+             * If the container is not managed by a page manager, then this returns 0.
+             *
+             * @return The managing page manager.
+             */
+            PageManager *getPageManager();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
             std::vector<Widget*> m_widgets;
+            PageManager *m_pageManager;
     };
 }
