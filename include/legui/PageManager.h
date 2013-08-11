@@ -13,8 +13,10 @@ namespace legui
      * If there is a new page without the possibility to go back, then you 
      * also are allowed to delete a specific page, to replace the current one, or
      * to delete the previous one.
+     *
+     * Do not use the container methods - use the pagemanager ones!!
      */
-    class PageManager : protected Container
+    class PageManager : public Container
     {
         public:
             PageManager();
