@@ -37,7 +37,8 @@ namespace legui
     void Widget::setParent(Container *parent)
     {
         m_parent = parent;
-        m_parentIt = parent->addWidget(this);
+        if(m_parent)
+            m_parentIt = parent->addWidget(this);
     }
     Container* Widget::getParent()
     {
