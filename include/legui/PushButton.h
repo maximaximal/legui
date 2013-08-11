@@ -6,6 +6,9 @@
 
 namespace legui
 {
+    /**
+     * @brief Describes a clickable button consisting of a label & a frame.
+     */
     class PushButton : public Clickable, public Frame
     {
         public:
@@ -17,6 +20,9 @@ namespace legui
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
 
+            /**
+             * @brief Returns the internal label.
+             */
             Label* getLabel();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
