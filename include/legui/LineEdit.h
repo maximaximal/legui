@@ -5,6 +5,7 @@
 #include <SFML/System/String.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <legui/Clickable.h>
+#include <legui/Frame.h>
 #include <legui/FontStyle.h>
 #include <legui/Cursor.h>
 
@@ -13,7 +14,7 @@ namespace legui
     /**
      * @brief A editable line for simple edit tasks.
      */
-    class LineEdit : public Clickable
+    class LineEdit : public Clickable, public Frame
     {
         public:
             LineEdit(Container* parent = 0);

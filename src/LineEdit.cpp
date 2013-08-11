@@ -5,7 +5,7 @@
 namespace legui
 {
     LineEdit::LineEdit(Container *parent)
-        : Clickable(parent)
+        : Clickable(parent), Frame(parent)
     {
         m_cursor = new Cursor();
         m_style = FontStyle::Regular;
@@ -35,6 +35,7 @@ namespace legui
     void LineEdit::onUpdate(float frametime)
     {
         Clickable::onUpdate(frametime);
+        Frame::onUpdate(frametime);
         m_cursor->onUpdate(frametime);
     }
     bool LineEdit::onEvent(const sf::Event &e)
@@ -42,6 +43,7 @@ namespace legui
         bool block = Clickable::onEvent(e);
         if(!block)
         {
+            Frame::onEvent(e);
             if(this->isFocused())
             {
                 m_cursor->onEvent(e);
@@ -52,12 +54,14 @@ namespace legui
                         if(m_cursorPos > 0)
                             m_cursorPos -= 1;
                         updateCursorPos();
+                        block = true;
                     }
                     if(e.key.code == sf::Keyboard::Right)
                     {
                         if(m_cursorPos < m_string.getSize())
                             m_cursorPos += 1;
                         updateCursorPos();
+                        block = true;
                     }
                 }
                 if(e.type == sf::Event::TextEntered)
@@ -65,6 +69,7 @@ namespace legui
                     this->appendCharacter(e.text.unicode);
                     m_cursorPos += 1;
                     updateCursorPos();
+                    block = true;
                 }
             }
         }
@@ -74,8 +79,8 @@ namespace legui
     {
         for(auto &it : m_letters)
         {
-            if(it->getGlobalBounds().left > m_boundingBox.left 
-                    && it->getGlobalBounds().left + it->getGlobalBounds().width < m_boundingBox.left + m_boundingBox.width)
+            if(it->getGlobalBounds().left > Clickable::m_boundingBox.left 
+                    && it->getGlobalBounds().left + it->getGlobalBounds().width < Clickable::m_boundingBox.left + Clickable::m_boundingBox.width)
                 target.draw(*it, states);
         }
         if(this->isFocused())
@@ -84,11 +89,12 @@ namespace legui
     void LineEdit::setBoundingBox(const sf::FloatRect &box)
     {
         Clickable::setBoundingBox(box);
+        Frame::setBoundingBox(box);
     }
     void LineEdit::updateSize()
     {
         Clickable::updateSize();
-    
+        Frame::updateSize();
     }
     void LineEdit::D_onClicked(const sf::Vector2f &relPos)
     {
@@ -97,12 +103,12 @@ namespace legui
         {
             x += m_letters[i]->getGlobalBounds().width;
         }
-        m_cursor->setBoundingBox(sf::FloatRect(x + m_boundingBox.left, m_boundingBox.top, m_characterSize, 2));
+        m_cursor->setBoundingBox(sf::FloatRect(x + Clickable::m_boundingBox.left, Clickable::m_boundingBox.top, m_characterSize, 2));
     }
     void LineEdit::updateCursorPos()
     {
         float x = m_letters[m_cursorPos]->getGlobalBounds().left + m_letters[m_cursorPos]->getGlobalBounds().width + m_xOffset;
-        if(x + m_xOffset > m_boundingBox.width)
+        if(x + m_xOffset > Clickable::m_boundingBox.width)
         {
             m_xOffset -= m_letters[m_cursorPos]->getGlobalBounds().width;
         }
@@ -110,12 +116,12 @@ namespace legui
         {
             m_xOffset += m_letters[m_cursorPos]->getGlobalBounds().width;
         }
-        m_cursor->setBoundingBox(sf::FloatRect(x + m_boundingBox.left + m_xOffset, m_boundingBox.top, m_characterSize, 2));
+        m_cursor->setBoundingBox(sf::FloatRect(x + Clickable::m_boundingBox.left + m_xOffset, Clickable::m_boundingBox.top, m_characterSize, 2));
         
         //Update letter positions
         float kerning = 0;
         //Reuse the x variable from before.
-        x = m_boundingBox.left;
+        x = Clickable::m_boundingBox.left;
         const sf::Font &font = Config::getFontManager()->get(m_fontPath);
         for(std::size_t i = 0; i < m_letters.size(); ++i)
         {
@@ -124,7 +130,7 @@ namespace legui
                 kerning = font.getKerning(m_letters[i - 1]->getString().getData()[0], m_letters[i]->getString().getData()[0], m_characterSize);
                 x += m_letters[i - 1]->getGlobalBounds().width + kerning;
             }
-            m_letters[i]->setPosition(sf::Vector2f(x, m_boundingBox.top));
+            m_letters[i]->setPosition(sf::Vector2f(x, Clickable::m_boundingBox.top));
         }
     }
     void LineEdit::setString(const sf::String &text)
