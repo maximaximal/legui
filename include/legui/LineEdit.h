@@ -14,7 +14,7 @@ namespace legui
     /**
      * @brief A editable line for simple edit tasks.
      */
-    class LineEdit : public Clickable, public Frame
+    class LineEdit : public Clickable
     {
         public:
             LineEdit(Container* parent = 0);
@@ -123,6 +123,11 @@ namespace legui
              * @return The color.
              */
             const sf::Color& getColor();
+
+            /**
+             * @brief Returns the internal background frame.
+             */
+            Frame* getFrame();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         
@@ -139,6 +144,7 @@ namespace legui
             std::string m_fontPath;
             unsigned int m_characterSize;
             std::size_t m_cursorPos;
+            Frame *m_frame;
             sf::Text::Style m_fontStyle;
             FontStyle m_style;
             sf::String m_string;

@@ -5,9 +5,10 @@
 namespace legui
 {
     LineEdit::LineEdit(Container *parent)
-        : Clickable(parent), Frame(parent)
+        : Clickable(parent) 
     {
         m_cursor = new Cursor();
+        m_frame = new Frame();
         m_style = FontStyle::Regular;
         m_fontStyle = sf::Text::Style::Regular;
         m_characterSize = Config::getInt("DEFAULT_FONT_SIZE");
@@ -19,6 +20,7 @@ namespace legui
     {
         clear();
         delete m_cursor;
+        delete m_frame;
     }
     void LineEdit::clear()
     {
@@ -35,7 +37,7 @@ namespace legui
     void LineEdit::onUpdate(float frametime)
     {
         Clickable::onUpdate(frametime);
-        Frame::onUpdate(frametime);
+        m_frame->onUpdate(frametime);
         m_cursor->onUpdate(frametime);
     }
     bool LineEdit::onEvent(const sf::Event &e)
@@ -43,7 +45,7 @@ namespace legui
         bool block = Clickable::onEvent(e);
         if(!block)
         {
-            Frame::onEvent(e);
+            m_frame->onEvent(e);
             if(this->isFocused())
             {
                 m_cursor->onEvent(e);
@@ -89,12 +91,13 @@ namespace legui
     void LineEdit::setBoundingBox(const sf::FloatRect &box)
     {
         Clickable::setBoundingBox(box);
-        Frame::setBoundingBox(box);
+        m_frame->setBoundingBox(box);
     }
     void LineEdit::updateSize()
     {
         Clickable::updateSize();
-        Frame::updateSize();
+        m_frame->updateSize();
+        m_cursor->updateSize();
     }
     void LineEdit::D_onClicked(const sf::Vector2f &relPos)
     {

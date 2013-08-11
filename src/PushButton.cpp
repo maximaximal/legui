@@ -7,10 +7,12 @@ namespace legui
         : Clickable(parent)
     {
         m_label = new Label(parent);
+        m_frame = new Frame(parent);
     }
     PushButton::~PushButton()
     {
         delete m_label;
+        delete m_frame;
     }
 
     void PushButton::onUpdate(float frametime)
