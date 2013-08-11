@@ -8,8 +8,6 @@ namespace legui
         : Widget(parent)
     {
         m_text = new sf::Text();
-
-        this->setStyle(style);
     }
     Label::~Label()
     {

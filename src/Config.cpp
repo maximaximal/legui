@@ -11,12 +11,11 @@ namespace legui
         std::map<std::string, bool> Config::m_bools = std::map<std::string, bool>();
         std::map<std::string, sf::Color> Config::m_colors = std::map<std::string, sf::Color>();
     //Define the font manager
-        FontManagerAbstract* Config::m_fontManager = 0;
+        FontManagerAbstract* Config::m_fontManager = new FontManager();
     
     Config::Config()
     {
-        //Initialize the default font manager
-            m_fontManager = new FontManager();
+
     }
     Config::~Config()
     {
