@@ -143,5 +143,6 @@ namespace legui
             sf::String m_string;
             sf::Color m_color;
             Cursor *m_cursor;
+            float m_xOffset;
     };
 }

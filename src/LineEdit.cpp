@@ -42,24 +42,44 @@ namespace legui
         bool block = Clickable::onEvent(e);
         if(!block)
         {
-            m_cursor->onEvent(e);
-            if(e.type == sf::Event::KeyPressed)
+            if(this->isFocused())
             {
-                if(e.key.code == sf::Keyboard::Left)
+                m_cursor->onEvent(e);
+                if(e.type == sf::Event::KeyPressed)
                 {
-                    if(m_cursorPos > 0)
-                        m_cursorPos -= 1;
-                    updateCursorPos();
+                    if(e.key.code == sf::Keyboard::Left)
+                    {
+                        if(m_cursorPos > 0)
+                            m_cursorPos -= 1;
+                        updateCursorPos();
+                    }
+                    if(e.key.code == sf::Keyboard::Right)
+                    {
+                        if(m_cursorPos < m_string.getSize())
+                            m_cursorPos += 1;
+                        updateCursorPos();
+                    }
                 }
-                if(e.key.code == sf::Keyboard::Right)
+                if(e.type == sf::Event::TextEntered)
                 {
-                    if(m_cursorPos < m_string.getSize())
-                        m_cursorPos += 1;
+                    this->appendCharacter(e.text.unicode);
+                    m_cursorPos += 1;
                     updateCursorPos();
                 }
             }
         }
         return block;
+    }
+    void LineEdit::draw(sf::RenderTarget &target, sf::RenderStates states) const
+    {
+        for(auto &it : m_letters)
+        {
+            if(it->getGlobalBounds().left > m_boundingBox.left 
+                    && it->getGlobalBounds().left + it->getGlobalBounds().width < m_boundingBox.left + m_boundingBox.width)
+                target.draw(*it, states);
+        }
+        if(this->isFocused())
+            target.draw(*m_cursor, states);
     }
     void LineEdit::setBoundingBox(const sf::FloatRect &box)
     {
@@ -81,12 +101,31 @@ namespace legui
     }
     void LineEdit::updateCursorPos()
     {
-        float x = 0;
-        for(std::size_t i = 0; i < m_cursorPos; ++i)
+        float x = m_letters[m_cursorPos]->getGlobalBounds().left + m_letters[m_cursorPos]->getGlobalBounds().width + m_xOffset;
+        if(x + m_xOffset > m_boundingBox.width)
         {
-            x += m_letters[i]->getGlobalBounds().width;
+            m_xOffset -= m_letters[m_cursorPos]->getGlobalBounds().width;
         }
-        m_cursor->setBoundingBox(sf::FloatRect(x + m_boundingBox.left, m_boundingBox.top, m_characterSize, 2));
+        if(x + m_xOffset < 0)
+        {
+            m_xOffset += m_letters[m_cursorPos]->getGlobalBounds().width;
+        }
+        m_cursor->setBoundingBox(sf::FloatRect(x + m_boundingBox.left + m_xOffset, m_boundingBox.top, m_characterSize, 2));
+        
+        //Update letter positions
+        float kerning = 0;
+        //Reuse the x variable from before.
+        x = m_boundingBox.left;
+        const sf::Font &font = Config::getFontManager()->get(m_fontPath);
+        for(std::size_t i = 0; i < m_letters.size(); ++i)
+        {
+            if(i > 0)
+            {
+                kerning = font.getKerning(m_letters[i - 1]->getString().getData()[0], m_letters[i]->getString().getData()[0], m_characterSize);
+                x += m_letters[i - 1]->getGlobalBounds().width + kerning;
+            }
+            m_letters[i]->setPosition(sf::Vector2f(x, m_boundingBox.top));
+        }
     }
     void LineEdit::setString(const sf::String &text)
     {
@@ -98,10 +137,31 @@ namespace legui
     }
     void LineEdit::appendCharacter(sf::Uint32 character)
     {
-        m_string.insert(m_string.getSize() - 1, character);
-        sf::Text *text = new sf::Text();
-        text->setString(character);
-        m_letters.push_back(text);
+        if(character == 8) //Character equals a backspace
+        {
+            if(m_cursorPos > 0)
+            {
+                m_string.erase(m_cursorPos);
+                delete m_letters[m_cursorPos];
+                m_letters.erase(m_letters.begin() + m_cursorPos);
+            }
+        }
+        else if(character == 127) //Delete character
+        {
+            if(m_cursorPos < m_string.getSize() - 1)
+            {
+                m_string.erase(m_cursorPos + 1);
+                delete m_letters[m_cursorPos + 1];
+                m_letters.erase(m_letters.begin() + m_cursorPos - 1);
+            }
+        }
+        else 
+        {
+            m_string.insert(m_string.getSize() - 1, character);
+            sf::Text *text = new sf::Text();
+            text->setString(character);
+            m_letters.push_back(text);
+        }
     }
     void LineEdit::applyStyle()
     {
