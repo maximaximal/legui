@@ -4,6 +4,15 @@ using namespace std;
 
 namespace legui
 {
+    //Define the private maps
+        std::map<std::string, std::string> Config::m_strings = std::map<std::string, std::string>();
+        std::map<std::string, int> Config::m_ints = std::map<std::string, int>();
+        std::map<std::string, float> Config::m_floats = std::map<std::string, float>();
+        std::map<std::string, bool> Config::m_bools = std::map<std::string, bool>();
+        std::map<std::string, sf::Color> Config::m_colors = std::map<std::string, sf::Color>();
+    //Define the font manager
+        FontManagerAbstract* Config::m_fontManager = 0;
+    
     Config::Config()
     {
         //Initialize the default font manager
