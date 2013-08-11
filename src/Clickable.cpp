@@ -65,6 +65,10 @@ namespace legui
         }
         return false;
     }
+    const sf::Vector2f& Clickable::getRelPos()
+    {
+        return m_relPos;
+    }
     void Clickable::setPressed(bool state)
     {
         if(m_pressed)
