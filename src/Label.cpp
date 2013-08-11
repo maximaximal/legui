@@ -4,7 +4,7 @@
 
 namespace legui
 {
-    Label::Label(Container *parent, const sf::String &text, Label::Style style)
+    Label::Label(Container *parent, const sf::String &text, FontStyle style)
         : Widget(parent)
     {
         m_text = new sf::Text();
@@ -16,37 +16,9 @@ namespace legui
         delete m_text;
     }
 
-    void Label::setStyle(Label::Style style)
+    void Label::setStyle(FontStyle style)
     {
-        m_text->setFont(legui::Config::getFontManager()->get(Config::getString("DEFAULT_FONT")));
-        unsigned int defaultSize = Config::getInt("DEFAULT_FONT_SIZE");
-        m_text->setCharacterSize(defaultSize);
-        m_text->setColor(Config::getColor("DEFAULT_FONT_COLOR"));
-
-        switch(style)
-        {
-            case Style::Regular:
-                break;
-            case Style::Heading1:
-                m_text->setCharacterSize(defaultSize * 2);
-                break;
-            case Style::Heading2:
-                m_text->setCharacterSize(defaultSize * 1.5);
-                break;
-            case Style::Heading3:
-                m_text->setCharacterSize(defaultSize * 1.17);
-                break;
-            case Style::Heading4:
-                m_text->setCharacterSize(defaultSize);
-                break;
-            case Style::Heading5:
-                m_text->setCharacterSize(defaultSize * 0.83);
-                break;
-            case Style::Heading6:
-                m_text->setCharacterSize(defaultSize * 0.75);
-                break;
-        };
-        m_style = style;
+        FontStyleUtils::setStyle(m_text, style);
         this->updateSize();
     }
     void Label::setBoundingBox(const sf::FloatRect &box)
@@ -122,7 +94,7 @@ namespace legui
     {
         return static_cast<sf::Text::Style>(m_text->getStyle());
     }
-    Label::Style Label::getStyle()
+    FontStyle Label::getStyle()
     {
         return m_style;
     }

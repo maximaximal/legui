@@ -1,8 +1,9 @@
 #pragma once
 
-#include <legui/Widget.h>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
+#include <legui/Widget.h>
+#include <legui/FontStyle.h>
 
 namespace legui
 {
@@ -12,19 +13,7 @@ namespace legui
     class Label : public Widget
     {
         public:
-            /**
-             * @brief The pre-defined default style of the label.
-             */
-            enum Style {
-                Regular,
-                Heading1,
-                Heading2,
-                Heading3,
-                Heading4,
-                Heading5,
-                Heading6
-            };
-            Label(Container *parent = 0, const sf::String &text = "", Label::Style style = Label::Style::Regular);
+            Label(Container *parent = 0, const sf::String &text = "", FontStyle style = FontStyle::Regular);
             virtual ~Label();
             
             virtual void setBoundingBox(const sf::FloatRect &box);
@@ -56,7 +45,7 @@ namespace legui
              *
              * @param style The style.
              */
-            virtual void setStyle(Label::Style style);
+            virtual void setStyle(FontStyle style);
             /**
              * @brief Sets the character size of the font.
              *
@@ -70,13 +59,13 @@ namespace legui
             const sf::String& getVisibleString(); 
             const sf::Font* getFont();
             sf::Text::Style getFontStyle();
-            Label::Style getStyle();
+            FontStyle getStyle();
             unsigned int getCharacterSize();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         private:
             sf::Text *m_text;
             sf::String m_string;
-            Label::Style m_style;
+            FontStyle m_style;
     };
 }
