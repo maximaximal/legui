@@ -24,6 +24,11 @@ namespace legui
             m_floats["CUROSR_BLINK_RATE"] = 0.53;
             m_colors["CURSOR_ACTIVE"] = sf::Color::White;
             m_colors["CURSOR_UNACTIVE"] = sf::Color::Transparent;
+        //Push Button
+            m_colors["BUTTON_OUTLINE_FOCUSED"] = sf::Color(62, 79, 156, 190);
+            m_colors["BUTTON_OUTLINE"] = sf::Color(62, 79, 156, 20);
+            m_colors["BUTTON_FILL_HOVER"] = sf::Color(128, 128, 128);
+            m_colors["BUTTON_FILL"] = sf::Color(186, 186, 186);
         //Scrollbar
             m_floats["SCROLLBAR_WIDTH"] = 8;
             m_floats["SCROLLBAR_MIN_LENGHT"] = 100;

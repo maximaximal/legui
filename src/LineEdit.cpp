@@ -132,6 +132,7 @@ namespace legui
             }
             m_letters[i]->setPosition(sf::Vector2f(x, Clickable::m_boundingBox.top));
         }
+        this->applyStyle();
     }
     void LineEdit::setString(const sf::String &text)
     {
@@ -183,6 +184,7 @@ namespace legui
     void LineEdit::setFontStyle(sf::Text::Style style)
     {
         m_fontStyle = style;
+        this->applyStyle();
     }
     void LineEdit::setStyle(FontStyle style)
     {
@@ -191,14 +193,17 @@ namespace legui
         m_characterSize = Config::getInt("DEFAULT_FONT_SIZE");
         m_color = Config::getColor("DEFAULT_FONT_COLOR");
         m_fontPath = Config::getString("DEFAULT_FONT");
+        this->applyStyle();
     }
     void LineEdit::setCharacterSize(unsigned int size)
     {
         m_characterSize = size;
+        this->applyStyle();
     }
     void LineEdit::setColor(const sf::Color &color)
     {
         m_color = color;
+        this->applyStyle();
     }
     const sf::String& LineEdit::getString()
     {
