@@ -20,7 +20,7 @@ namespace legui
             middle = it->getBoundingBox();
             middle.left = box.left + box.width / 2 - middle.width / 2;
             middle.top = y;
-            it->setBoundingBox()
+            it->setBoundingBox(middle);
             y += middle.height;
         }
     }
