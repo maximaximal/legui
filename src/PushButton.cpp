@@ -1,6 +1,9 @@
 #include <legui/PushButton.h>
 #include <legui/Config.h>
 
+#include <iostream>
+using namespace std;
+
 namespace legui
 {
     PushButton::PushButton(Container *parent)
@@ -42,11 +45,14 @@ namespace legui
         middle.left = box.left + box.width / 2 - m_label->getBoundingBox().width / 2;
         middle.top = box.top + box.height / 2 - m_label->getBoundingBox().height / 2;
         m_label->setBoundingBox(middle);
+        cout << "FRAME: " << box.left << "x" << box.top << "x" << box.width << "x" << box.height << endl;
+        cout << "MIDDLE: " << middle.left << "x" << middle.top << "x" << middle.width << "x" << middle.height << endl;
     }
     void PushButton::updateSize()
     {
-        //Nothing to do
-        //Size keeps the same all the time.
+        Clickable::updateSize();
+        m_label->updateSize();
+        m_frame->updateSize();
     }
     void PushButton::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {

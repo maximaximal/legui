@@ -51,17 +51,15 @@ namespace legui
     }
     void Container::updateSize()
     {
-        m_boundingBox.width = 0;
-        m_boundingBox.height = 0;
         for(auto &it : m_widgets)
         {
-            m_boundingBox.width += it->getBoundingBox().width;
-            m_boundingBox.height += it->getBoundingBox().height;
+            it->updateSize();
         }
     }
     std::size_t Container::addWidget(Widget *widget)
     {
         m_widgets.push_back(widget); 
+        widget->setParent(this);
         return m_widgets.size() - 1;
     }
     void Container::deleteWidget(Widget *widget)

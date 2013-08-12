@@ -5,6 +5,7 @@ namespace legui
 {
     Widget::Widget(Container* parent)
     {
+        m_parent = 0;
         setParent(parent);
     }
     Widget::~Widget()
@@ -34,13 +35,13 @@ namespace legui
     }
     void Widget::updateSize()
     {
-        m_parent->updateSize();
+        
     }
     void Widget::setParent(Container *parent)
     {
+        if(m_parent != 0)
+            m_parent->removeWidget(this);
         m_parent = parent;
-        if(m_parent)
-            m_parentIt = parent->addWidget(this);
     }
     Container* Widget::getParent()
     {
