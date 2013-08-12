@@ -5,7 +5,7 @@ namespace legui
     CenteredStrip::CenteredStrip(Container *parent)
         : Container(parent)
     {
-        
+        m_elementPadding = 0;
     }
     CenteredStrip::~CenteredStrip()
     {
@@ -22,7 +22,15 @@ namespace legui
             middle.left = box.left + box.width / 2 - middle.width / 2;
             middle.top = y;
             it->setBoundingBox(middle);
-            y += middle.height;
+            y += middle.height + m_elementPadding;
         }
+    }
+    void CenteredStrip::setElementPadding(float padding)
+    {
+        m_elementPadding = padding;
+    }
+    float CenteredStrip::getElementPadding()
+    {
+        return m_elementPadding;
     }
 }
