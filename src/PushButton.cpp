@@ -10,6 +10,7 @@ namespace legui
         m_frame = new Frame(parent);
         m_frame->setOutlineColor(Config::getColor("BUTTON_OUTLINE"));
         m_frame->setFillColor(Config::getColor("BUTTON_FILL"));
+        m_frame->setOutlineThickness(Config::getFloat("BUTTON_OUTLINE_THICKNESS"));
     }
     PushButton::~PushButton()
     {
@@ -37,7 +38,7 @@ namespace legui
     {
         Clickable::setBoundingBox(box);
         m_frame->setBoundingBox(box);
-        sf::FloatRect middle = box;
+        sf::FloatRect middle = m_label->getBoundingBox();
         middle.left = box.left + box.width / 2 - m_label->getBoundingBox().width / 2;
         middle.top = box.top + box.height / 2 - m_label->getBoundingBox().height / 2;
         m_label->setBoundingBox(middle);

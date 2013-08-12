@@ -8,6 +8,7 @@ namespace legui
         : Widget(parent)
     {
         m_text = new sf::Text();
+        m_string = text;
         this->setStyle(style);
     }
     Label::~Label()
@@ -46,11 +47,8 @@ namespace legui
                 currentlyVisible += m_text->getString()[i];
             }
         }
-        else
-        {
-            m_boundingBox.width = m_text->getGlobalBounds().width;
-            m_boundingBox.height = m_text->getGlobalBounds().height;
-        }
+        m_boundingBox.width = m_text->getLocalBounds().width;
+        m_boundingBox.height = m_text->getLocalBounds().height;
     }
     void Label::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {

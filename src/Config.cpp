@@ -39,6 +39,7 @@ namespace legui
             Config::m_colors["BUTTON_OUTLINE"] = sf::Color(62, 79, 156, 20);
             Config::m_colors["BUTTON_FILL_HOVER"] = sf::Color(128, 128, 128);
             Config::m_colors["BUTTON_FILL"] = sf::Color(186, 186, 186);
+            Config::m_floats["BUTTON_OUTLINE_THICKNESS"] = 3;
         //Scrollbar
             Config::m_floats["SCROLLBAR_WIDTH"] = 8;
             Config::m_floats["SCROLLBAR_MIN_LENGHT"] = 100;
