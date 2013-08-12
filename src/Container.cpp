@@ -16,9 +16,9 @@ namespace legui
     }
     void Container::clear()
     {
-        for(auto it = m_widgets.begin(); it != m_widgets.end(); ++it)
+        for(auto &it : m_widgets)
         {
-            delete (*it);
+            delete it;
         }
         m_widgets.clear();
     }
