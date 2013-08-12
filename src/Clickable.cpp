@@ -20,50 +20,53 @@ namespace legui
     bool Clickable::onEvent(const sf::Event &e)
     {
         //Update the focusable widget.
-        Focusable::onEvent(e);
+        bool block = Focusable::onEvent(e);
         
-        if(isFocused())
+        if(!block)
         {
-            if(e.type == sf::Event::KeyPressed)
+            if(isFocused())
             {
-                if(e.key.code == sf::Keyboard::Return)
+                if(e.type == sf::Event::KeyPressed)
                 {
-                    m_relPos = sf::Vector2f(0, 0);
-                    setPressed(true);
+                    if(e.key.code == sf::Keyboard::Return)
+                    {
+                        m_relPos = sf::Vector2f(0, 0);
+                        setPressed(true);
+                    }
+                }
+                if(e.type == sf::Event::KeyReleased)
+                {
+                    if(e.key.code == sf::Keyboard::Return)
+                    {
+                        m_relPos = sf::Vector2f(0, 0);
+                        setPressed(false);
+                    }
                 }
             }
-            if(e.type == sf::Event::KeyReleased)
+            if(e.type == sf::Event::MouseButtonPressed)
             {
-                if(e.key.code == sf::Keyboard::Return)
+                if(e.mouseButton.button == sf::Mouse::Left)
                 {
-                    m_relPos = sf::Vector2f(0, 0);
-                    setPressed(false);
+                    if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
+                    {
+                        m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
+                        setPressed(true);
+                    }
+                }
+            }
+            if(e.type == sf::Event::MouseButtonReleased)
+            {
+                if(e.mouseButton.button == sf::Mouse::Left)
+                {
+                    if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
+                    {
+                        m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
+                        setPressed(false);
+                    }
                 }
             }
         }
-        if(e.type == sf::Event::MouseButtonPressed)
-        {
-            if(e.mouseButton.button == sf::Mouse::Left)
-            {
-                if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
-                {
-                    m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
-                    setPressed(true);
-                }
-            }
-        }
-        if(e.type == sf::Event::MouseButtonReleased)
-        {
-            if(e.mouseButton.button == sf::Mouse::Left)
-            {
-                if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
-                {
-                    m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
-                    setPressed(false);
-                }
-            }
-        }
-        return false;
+        return block;
     }
     const sf::Vector2f& Clickable::getRelPos()
     {
