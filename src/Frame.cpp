@@ -19,6 +19,7 @@ namespace legui
     }
     void Frame::setBoundingBox(const sf::FloatRect &box)
     {
+        Widget::setBoundingBox(box);
         m_rectangleShape->setPosition(sf::Vector2f(box.left, box.top));
         m_rectangleShape->setSize(sf::Vector2f(box.width, box.height));
     }

@@ -30,7 +30,7 @@ namespace legui
     }
     void Widget::setBoundingBox(const sf::FloatRect &box)
     {
-    
+        m_boundingBox = box;
     }
     void Widget::updateSize()
     {
