@@ -88,6 +88,10 @@ namespace legui
              */
             void setFont(std::string fontPath);
             /**
+             * @brief Updates the positions of the leters.
+             */
+            void updateLetterPos();
+            /**
              * @brief Returns the currently string in the edit.
              *
              * @return The current string.

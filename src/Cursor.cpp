@@ -34,7 +34,7 @@ namespace legui
     {
         Widget::setBoundingBox(box);
         m_backgroundRect->setPosition(sf::Vector2f(box.left, box.top));
-        m_backgroundRect->setSize(sf::Vector2f(box.height, Config::getFloat("CURSOR_WIDTH")));
+        m_backgroundRect->setSize(sf::Vector2f(Config::getFloat("CURSOR_WIDTH"), box.height));
     }
     void Cursor::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
