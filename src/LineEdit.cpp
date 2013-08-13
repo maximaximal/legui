@@ -61,6 +61,7 @@ namespace legui
                             m_cursorPos -= 1;
                         updateCursorPos();
                         block = true;
+                        m_cursor->resetBlinkTimer();
                     }
                     if(e.key.code == sf::Keyboard::Right)
                     {
@@ -68,6 +69,7 @@ namespace legui
                             m_cursorPos += 1;
                         updateCursorPos();
                         block = true;
+                        m_cursor->resetBlinkTimer();
                     }
                 }
                 if(e.type == sf::Event::TextEntered)
@@ -76,6 +78,7 @@ namespace legui
                     updateLetterPos();
                     updateCursorPos();
                     block = true;
+                    m_cursor->resetBlinkTimer();
                 }
             }
             if(e.type == sf::Event::MouseButtonPressed)
@@ -124,6 +127,7 @@ namespace legui
             m_cursorPos = i;
         }
         this->updateCursorPos();
+        m_cursor->resetBlinkTimer();
     }
     void LineEdit::updateLetterPos()
     {

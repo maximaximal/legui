@@ -31,7 +31,7 @@ namespace legui
             Config::m_floats["FRAME_OUTLINE_THICKNESS"] = 0;
         //Cursor
             Config::m_floats["CURSOR_WIDTH"] = 2;
-            Config::m_floats["CUROSR_BLINK_RATE"] = 0.53;
+            Config::m_floats["CURSOR_BLINK_RATE"] = 0.53;
             Config::m_colors["CURSOR_ACTIVE"] = sf::Color::White;
             Config::m_colors["CURSOR_UNACTIVE"] = sf::Color::Transparent;
         //Push Button

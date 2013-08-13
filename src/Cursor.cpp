@@ -20,9 +20,11 @@ namespace legui
         Widget::onUpdate(frametime);
         m_blinkTimer += frametime;
 
-        if(fmod(m_blinkTimer, Config::getFloat("CUROSR_BLINK_RATE")) == 0)
+        if(m_blinkTimer > Config::getFloat("CURSOR_BLINK_RATE"))
         {
             m_state = !m_state;
+            this->refresh();
+            m_blinkTimer = 0;
         }
     }
     bool Cursor::onEvent(const sf::Event &e)
