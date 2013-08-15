@@ -132,10 +132,37 @@ namespace legui
              * @brief Returns the internal background frame.
              */
             Frame* getFrame();
+            /**
+             * @brief Immediate mode hook for the onFinished signal.
+             */
+            bool isFinished();
+            /**
+             * @brief Immediate mode hook for the onChanged signal.
+             */
+            bool hasChanged();
+            /**
+             * @brief Returns the onFinished signal.
+             *
+             * This signal is thrown if the user has clicked out of the lineedit if it was focused or 
+             * if te user presses the enter key.
+             *
+             * @return The signal.
+             */
+            Nano::signal<void(const sf::String&)>& onFinished();
+            /**
+             * @brief Returns the onChanged signal.
+             *
+             * This signal is thrown if the user has changed the content of this lineedit.
+             *
+             * @return The signal.
+             */
+            Nano::signal<void(const sf::String&)>& onChanged();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         
             virtual void D_onClicked(const sf::Vector2f &relPos);
+            virtual void D_onFocusGained();
+            virtual void D_onFocusLost();
         private:
             /**
              * @brief Updates the cursor. (only needed interbnally)
@@ -155,5 +182,7 @@ namespace legui
             sf::Color m_color;
             Cursor *m_cursor;
             float m_xOffset;
+            bool m_hasChanged, m_isFinished, m_queryCursorUpdate;
+            Nano::signal<void(const sf::String&)> m_onFinished, m_onChanged;
     };
 }

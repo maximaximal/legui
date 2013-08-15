@@ -19,6 +19,9 @@ namespace legui
         m_fontPath = Config::getString("DEFAULT_FONT");
         m_cursorPos = 0;
         m_xOffset = 0;
+        m_hasChanged = false;
+        m_isFinished = false;
+        m_queryCursorUpdate = false;
     }
     LineEdit::~LineEdit()
     {
@@ -43,6 +46,14 @@ namespace legui
         Clickable::onUpdate(frametime);
         m_frame->onUpdate(frametime);
         m_cursor->onUpdate(frametime);
+        m_hasChanged = false;
+        m_isFinished = false;
+        if(m_queryCursorUpdate)
+        {
+            this->updateCursorPos();
+            m_cursor->resetBlinkTimer();
+            m_queryCursorUpdate = false;
+        }
     }
     bool LineEdit::onEvent(const sf::Event &e)
     {
@@ -79,16 +90,8 @@ namespace legui
                     updateCursorPos();
                     block = true;
                     m_cursor->resetBlinkTimer();
-                }
-            }
-            if(e.type == sf::Event::MouseButtonPressed)
-            {
-                if(e.mouseButton.button == sf::Mouse::Left)
-                {
-                    if(!m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
-                    {
-                        this->setFocus(false);
-                    }
+                    m_hasChanged = true;
+                    m_onChanged(m_string);
                 }
             }
         }
@@ -119,7 +122,6 @@ namespace legui
     }
     void LineEdit::D_onClicked(const sf::Vector2f &relPos)
     {
-        setFocus(true);
         float x = 0;
         for(std::size_t i = 0; relPos.x > x && i < m_letters.size(); ++i)
         {
@@ -128,6 +130,16 @@ namespace legui
         }
         this->updateCursorPos();
         m_cursor->resetBlinkTimer();
+    }
+    void LineEdit::D_onFocusGained()
+    {
+        m_queryCursorUpdate = true;
+    }
+    void LineEdit::D_onFocusLost()
+    {
+        if(!m_isFinished)
+            m_onFinished(m_string);
+        m_isFinished = true;
     }
     void LineEdit::updateLetterPos()
     {
@@ -198,6 +210,17 @@ namespace legui
                 m_letters.erase(m_letters.begin() + m_cursorPos);
             }
         }
+        else if(character == 13)
+        {
+            this->focusToNext();
+            m_isFinished = true;
+            m_onFinished(m_string);
+        }
+        else if(character == 9)
+        {
+            //Do nothing
+            //Tab character catched.
+        }
         else 
         {
             m_string.insert(m_cursorPos, character);
@@ -266,5 +289,21 @@ namespace legui
     const sf::Color& LineEdit::getColor()
     {
         return m_color;
+    }
+    Nano::signal<void(const sf::String&)>& LineEdit::onFinished()
+    {
+        return m_onFinished;
+    }
+    Nano::signal<void(const sf::String&)>& LineEdit::onChanged()
+    {
+        return m_onChanged;
+    }
+    bool LineEdit::isFinished()
+    {
+        return m_isFinished;
+    }
+    bool LineEdit::hasChanged()
+    {
+        return m_hasChanged;
     }
 }
