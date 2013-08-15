@@ -53,5 +53,6 @@ namespace legui
     {
         m_blinkTimer = 0;
         m_state = true;
+        refresh();
     }
 }
