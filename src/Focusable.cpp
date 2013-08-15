@@ -40,6 +40,17 @@ namespace legui
                     }
                 }
             }
+            if(e.type == sf::Event::MouseButtonPressed)
+            {
+                if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
+                {
+                    this->setFocus(true);
+                }
+                else
+                {
+                    this->setFocus(false);
+                }
+            }
         }
         return block;
     }
@@ -73,7 +84,7 @@ namespace legui
     {
         if(m_nextFocusable)
         {
-            this->setFocus(false)
+            this->setFocus(false);
             m_nextFocusable->setFocus(true);
         }
     }
