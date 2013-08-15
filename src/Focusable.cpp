@@ -69,6 +69,14 @@ namespace legui
     {
         m_nextFocusable = next;
     }
+    void Focusable::focusToNext()
+    {
+        if(m_nextFocusable)
+        {
+            this->setFocus(false)
+            m_nextFocusable->setFocus(true);
+        }
+    }
     bool Focusable::isFocused() const
     {
         return m_isFocused;

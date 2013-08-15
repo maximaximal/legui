@@ -52,6 +52,10 @@ namespace legui
              * @param state Focus state.
              */
             void setFocus(bool state);
+            /**
+             * @brief Gives the focus to the next widget if one is set.
+             */
+            void focusToNext();
         protected:
             /**
              * @brief Derivable function for the focus gained signal.
