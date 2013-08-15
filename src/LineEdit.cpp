@@ -164,6 +164,8 @@ namespace legui
             if(m_letters[m_cursorPos - 1]->getGlobalBounds().left < m_boundingBox.left)
             {
                 m_xOffset += m_letters[m_cursorPos - 1]->getGlobalBounds().width;
+                if(m_cursorPos == 1)
+                    m_xOffset = 0;
                 this->updateLetterPos();
             }
             else if(m_letters[m_cursorPos - 1]->getGlobalBounds().left + m_letters[m_cursorPos - 1]->getGlobalBounds().width > m_boundingBox.left + m_boundingBox.width)
