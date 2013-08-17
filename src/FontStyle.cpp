@@ -16,19 +16,19 @@ namespace legui
             case FontStyle::Regular:
                 break;
             case FontStyle::Heading1:
-                text->setCharacterSize(defaultSize * 2);
+                text->setCharacterSize(defaultSize * 5);
                 break;
             case FontStyle::Heading2:
-                text->setCharacterSize(defaultSize * 1.5);
+                text->setCharacterSize(defaultSize * 4);
                 break;
             case FontStyle::Heading3:
-                text->setCharacterSize(defaultSize * 1.17);
+                text->setCharacterSize(defaultSize * 3);
                 break;
             case FontStyle::Heading4:
-                text->setCharacterSize(defaultSize);
+                text->setCharacterSize(defaultSize * 2);
                 break;
             case FontStyle::Heading5:
-                text->setCharacterSize(defaultSize * 0.83);
+                text->setCharacterSize(defaultSize);
                 break;
             case FontStyle::Heading6:
                 text->setCharacterSize(defaultSize * 0.75);
