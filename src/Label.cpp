@@ -24,6 +24,7 @@ namespace legui
     void Label::setBoundingBox(const sf::FloatRect &box)
     {
         Widget::setBoundingBox(box);
+        this->setCharacterSize((unsigned int) box.height);
 
         if(Config::getBool("LABEL_PIXELPERFECT_POSITION"))
             m_text->setPosition(sf::Vector2f((int) box.left, (int) box.top));

@@ -17,6 +17,9 @@ namespace legui
 
             virtual void onUpdate(float frametime);
             virtual bool onEvent(const sf::Event &e);
+            /**
+             * @brief Sets the bounding box & also resizes the internal label.
+             */
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
 

@@ -38,10 +38,10 @@ namespace legui
     {
         Clickable::setBoundingBox(box);
         m_frame->setBoundingBox(box);
-        sf::FloatRect middle = m_label->getBoundingBox();
-        middle.left = box.left + box.width / 2 - m_label->getBoundingBox().width / 2;
-        middle.top = box.top + box.height / 2 - m_label->getBoundingBox().height / 2;
-        m_label->setBoundingBox(middle);
+        m_label->setCharacterSize((unsigned int) box.height - 3);
+        m_label->setBoundingBox(sf::FloatRect(m_boundingBox.left + m_boundingBox.width / 2 - m_label->getBoundingBox().width / 2, 
+                    m_boundingBox.top + m_boundingBox.height / 2 - m_label->getBoundingBox().height / 2,
+                    m_label->getBoundingBox().width, m_label->getBoundingBox().height));
     }
     void PushButton::updateSize()
     {
