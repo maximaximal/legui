@@ -10,16 +10,18 @@ namespace legui
     }
     void HorizontalSplitter::setBoundingBox(const sf::FloatRect &box)
     {
+        Container::setBoundingBox(box);
         float offset = 0;
         for(std::size_t i = 0; i < getSize(); ++i)
         {
             if(i % 2 == 0)  //Number is even. (left side)
             {
-                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left, box.height + offset, box.width / 2 - m_padding / 2, Config::getFloat("STANDARD_HEIGHT")));
+                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left, box.top + offset, box.width / 2 - m_padding / 2, m_widgets[i]->getBoundingBox().height));
+                m_widgets[i]->updateSize();
             }
             else            //Number is not even. (right side)
             {
-                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left + box.width / 2 + m_padding / 2, box.height + offset, box.width / 2 - m_padding / 2, Config::getFloat("STANDARD_HEIGHT")));
+                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left + box.width / 2 + m_padding / 2, box.top + offset, box.width / 2 - m_padding / 2, m_widgets[i]->getBoundingBox().height));
                 //Update the size of the widget.
                 m_widgets[i]->updateSize();
                 //Increase the y offset based on the height of the last right element.
@@ -30,10 +32,13 @@ namespace legui
     void HorizontalSplitter::updateSize()
     {
         m_boundingBox.height = 0;
-        for(auto &it : m_widgets)
+        for(std::size_t i = 0; i < getSize(); ++i)
         {
-            it->updateSize();
-            m_boundingBox.height += it->getBoundingBox().height;
+            if(i % 2 != 0)  //Number is not even. (right side)
+            {
+                m_widgets[i]->updateSize();
+                m_boundingBox.height += m_widgets[i]->getBoundingBox().height;
+            }
         }
     }
     void HorizontalSplitter::setPadding(float padding)
