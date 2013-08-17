@@ -92,11 +92,27 @@ namespace legui
              */
             void updateLetterPos();
             /**
+             * @brief Sets the masking string. If empty, no mask is applied.
+             *
+             * The masking string will override the visible text of the line edit. Internally,
+             * all inputs are saved, but the output equals the masking. It is outputted for every
+             * letter typed.
+             *
+             * @param mask The masking string.
+             */
+            void setMaskingString(const sf::String &mask);
+            /**
              * @brief Returns the currently string in the edit.
              *
              * @return The current string.
              */
             const sf::String& getString();
+            /**
+             * @brief Returns the masking string.
+             *
+             * @return The masking string.
+             */
+            const sf::String& getMaskingString();
             /**
              * @brief Returns the font path.
              *
@@ -179,6 +195,7 @@ namespace legui
             sf::Text::Style m_fontStyle;
             FontStyle m_style;
             sf::String m_string;
+            sf::String m_maskingString;
             sf::Color m_color;
             Cursor *m_cursor;
             float m_xOffset;

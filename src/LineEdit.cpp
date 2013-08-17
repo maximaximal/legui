@@ -227,7 +227,10 @@ namespace legui
         {
             m_string.insert(m_cursorPos, character);
             sf::Text *text = new sf::Text();
-            text->setString(character);
+            if(m_maskingString != "")
+                text->setString(m_maskingString);
+            else
+                text->setString(character);
             FontStyleUtils::setStyle(text, m_style);
             text->setColor(m_color);
             text->setCharacterSize(m_characterSize);
@@ -272,6 +275,10 @@ namespace legui
         m_color = color;
         this->applyStyle();
     }
+    void LineEdit::setMaskingString(const sf::String &mask)
+    {
+        m_maskingString = mask;
+    }
     const sf::String& LineEdit::getString()
     {
         return m_string;
@@ -307,5 +314,9 @@ namespace legui
     bool LineEdit::hasChanged()
     {
         return m_hasChanged;
+    }
+    const sf::String& LineEdit::getMaskingString()
+    {
+        return m_maskingString;
     }
 }
