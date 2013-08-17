@@ -37,9 +37,9 @@ namespace legui
 
         if(Config::getBool("LABEL_RECT_BORDER"))
         {
+            sf::String currentlyVisible("");
             for(std::size_t i = 0; i < m_text->getString().getSize(); ++i)
             {
-                sf::String currentlyVisible("");
                 if(m_text->findCharacterPos(i).x > m_boundingBox.left + m_boundingBox.width)
                 {
                     m_text->setString(currentlyVisible);
@@ -47,9 +47,10 @@ namespace legui
                 }
                 currentlyVisible += m_text->getString()[i];
             }
+            m_text->setString(currentlyVisible);
         }
-        m_boundingBox.width = m_text->getLocalBounds().width;
-        m_boundingBox.height = m_text->getLocalBounds().height;
+        m_boundingBox.width = m_text->getGlobalBounds().width;
+        m_boundingBox.height = m_text->getGlobalBounds().height;
     }
     void Label::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
@@ -76,6 +77,10 @@ namespace legui
         m_text->setStyle(style);
         this->updateSize();
     }
+    void Label::setOrigin(const sf::Vector2f &origin)
+    {
+        m_text->setOrigin(origin);
+    }
     const sf::String& Label::getVisibleString()
     {
         return m_text->getString();
@@ -99,5 +104,9 @@ namespace legui
     unsigned int Label::getCharacterSize()
     {
         return m_text->getCharacterSize();
+    }
+    sf::Vector2f Label::getSize()
+    {
+        return sf::Vector2f(m_text->getLocalBounds().width, m_text->getLocalBounds().height);
     }
 }

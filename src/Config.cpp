@@ -37,7 +37,7 @@ namespace legui
         //Push Button
             Config::m_colors["BUTTON_OUTLINE_FOCUSED"] = sf::Color(62, 79, 156, 190);
             Config::m_colors["BUTTON_OUTLINE"] = sf::Color(62, 79, 156, 20);
-            Config::m_colors["BUTTON_FILL_HOVER"] = sf::Color(128, 128, 128);
+            Config::m_colors["BUTTON_FILL_HOVER"] = sf::Color(0, 26, 104);
             Config::m_colors["BUTTON_FILL"] = sf::Color(0, 38, 59);
             Config::m_floats["BUTTON_OUTLINE_THICKNESS"] = 3;
         //Scrollbar

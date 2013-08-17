@@ -52,6 +52,12 @@ namespace legui
              * @param size THe character size.
              */
             virtual void setCharacterSize(unsigned int size);
+            /**
+             * @brief Sets the origin of the internal sf::Text. Default is 0, 0.
+             *
+             * @param origin The origin.
+             */
+            void setOrigin(const sf::Vector2f &origin);
             const sf::String& getString(); 
             /**
              * @brief If LABEL_RECT_BORDER is set, this si the string in the visible area.
@@ -61,6 +67,10 @@ namespace legui
             sf::Text::Style getFontStyle();
             FontStyle getStyle();
             unsigned int getCharacterSize();
+            /**
+             * @brief Returns the getLocalBounds() width & height in a vector.
+             */
+            sf::Vector2f getSize();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         private:
