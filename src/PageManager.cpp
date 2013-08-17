@@ -7,6 +7,7 @@ namespace legui
         m_currentPage = 0;
         m_screenSizeChanged = false;
         m_updateSizeRequested = false;
+        m_popFlag = false;
     }
     PageManager::~PageManager()
     {
@@ -16,6 +17,12 @@ namespace legui
     {
         if(m_currentPage < m_widgets.size())
             m_widgets[m_currentPage]->onUpdate(frametime);
+        if(m_popFlag)
+        {
+            if(m_currentPage < m_widgets.size())
+                pop(m_currentPage);
+            m_popFlag = false;
+        }
     }
     bool PageManager::onEvent(const sf::Event &e)
     {
@@ -75,19 +82,21 @@ namespace legui
     void PageManager::pop(std::size_t page)
     {
         delete m_widgets[page];
-        m_widgets.erase(m_widgets.begin() + m_currentPage - 1);
-        m_currentPage -= 1;
-        if(m_screenSizeChanged)
-            top()->setBoundingBox(m_boundingBox);
-        if(m_updateSizeRequested)
-            top()->updateSize();
-        m_screenSizeChanged = false;
-        m_updateSizeRequested = false;
+        m_widgets.erase(m_widgets.begin() + m_currentPage);
+        if(m_currentPage > 0)
+        {
+            m_currentPage -= 1;
+            if(m_screenSizeChanged)
+                top()->setBoundingBox(m_boundingBox);
+            if(m_updateSizeRequested)
+                top()->updateSize();
+            m_screenSizeChanged = false;
+            m_updateSizeRequested = false;
+        }
     }
     void PageManager::pop()
     {
-        if(m_currentPage < m_widgets.size())
-        pop(m_currentPage);
+        m_popFlag = true;
     }
     Container* PageManager::top()
     {

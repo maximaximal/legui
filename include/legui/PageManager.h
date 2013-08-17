@@ -79,5 +79,6 @@ namespace legui
             std::size_t m_currentPage;
             bool m_screenSizeChanged;
             bool m_updateSizeRequested;
+            bool m_popFlag;
     };
 }
