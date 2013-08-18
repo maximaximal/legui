@@ -190,6 +190,7 @@ namespace legui
         {
             this->appendCharacter(text[i]);
         }
+        this->applyStyle();
     }
     void LineEdit::appendCharacter(sf::Uint32 character)
     {
@@ -318,5 +319,9 @@ namespace legui
     const sf::String& LineEdit::getMaskingString()
     {
         return m_maskingString;
+    }
+    Frame* LineEdit::getFrame()
+    {
+        return m_frame;
     }
 }

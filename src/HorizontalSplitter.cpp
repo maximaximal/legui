@@ -16,18 +16,19 @@ namespace legui
         {
             if(i % 2 == 0)  //Number is even. (left side)
             {
-                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left, box.top + offset, box.width / 2 - m_padding / 2, m_widgets[i]->getBoundingBox().height));
                 m_widgets[i]->updateSize();
+                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left, box.top + offset, box.width / 2 - m_padding / 2, m_widgets[i]->getBoundingBox().height));
             }
             else            //Number is not even. (right side)
             {
-                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left + box.width / 2 + m_padding / 2, box.top + offset, box.width / 2 - m_padding / 2, m_widgets[i]->getBoundingBox().height));
                 //Update the size of the widget.
                 m_widgets[i]->updateSize();
+                m_widgets[i]->setBoundingBox(sf::FloatRect(box.left + box.width / 2 + m_padding / 2, box.top + offset, box.width / 2 - m_padding / 2, m_widgets[i]->getBoundingBox().height));
                 //Increase the y offset based on the height of the last right element.
                 offset += m_widgets[i]->getBoundingBox().height;
             }
         }
+        m_boundingBox.height = offset;
     }
     void HorizontalSplitter::updateSize()
     {
