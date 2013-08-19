@@ -99,6 +99,7 @@ namespace legui
     }
     void LineEdit::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
+        target.draw(*m_frame, states);
         for(auto &it : m_letters)
         {
             if(it->getPosition().x >= Clickable::m_boundingBox.left 
