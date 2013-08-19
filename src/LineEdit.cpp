@@ -129,6 +129,13 @@ namespace legui
             x += m_letters[i]->getGlobalBounds().width;
             m_cursorPos = i;
         }
+        if(m_letters.size() > 0)
+        {
+            if(relPos.x > x)
+            {
+                ++m_cursorPos;
+            }
+        }
         this->updateCursorPos();
         m_cursor->resetBlinkTimer();
     }
