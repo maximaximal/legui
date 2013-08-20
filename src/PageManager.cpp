@@ -39,11 +39,10 @@ namespace legui
     void PageManager::setBoundingBox(const sf::FloatRect &box)
     {
         Container::setBoundingBox(box);
-        if(m_currentPage < m_widgets.size())
+        for(auto &it : m_widgets)
         {
-            m_widgets[m_currentPage]->setBoundingBox(box);
+            it->setBoundingBox(box);
         }
-        m_screenSizeChanged = true;
     }
     void PageManager::updateSize()
     {
