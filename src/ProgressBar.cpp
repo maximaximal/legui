@@ -6,6 +6,7 @@ namespace legui
     ProgressBar::ProgressBar(Container *parent)
         : Widget(parent)
     {
+        m_percent = 0;
         m_leftShape = new sf::RectangleShape();
         m_rightShape = new sf::RectangleShape();
 
