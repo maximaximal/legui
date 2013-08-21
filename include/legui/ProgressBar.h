@@ -15,6 +15,10 @@ namespace legui
             virtual ~ProgressBar();
 
             virtual void setBoundingBox(const sf::FloatRect &box);
+            /**
+             * @brief Updates the internal rectangles.
+             */
+            virtual void updateSize();
 
             /**
              * @brief Sets the percent of the progress bar.

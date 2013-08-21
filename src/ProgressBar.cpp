@@ -25,11 +25,14 @@ namespace legui
     void ProgressBar::setBoundingBox(const sf::FloatRect &box)
     {
         Widget::setBoundingBox(box);
-
-        m_leftShape->setSize(sf::Vector2f(box.width / 100 * m_percent, box.height));
-        m_leftShape->setPosition(sf::Vector2f(box.left, box.top));
-        m_rightShape->setSize(sf::Vector2f(box.width -  (box.width / 100 * m_percent), box.height));
-        m_rightShape->setPosition(sf::Vector2f(box.left + m_leftShape->getSize().x, box.top));
+        this->updateSize();
+    }
+    void ProgressBar::updateSize()
+    {
+        m_leftShape->setSize(sf::Vector2f(m_boundingBox.width / 100 * m_percent, m_boundingBox.height));
+        m_leftShape->setPosition(sf::Vector2f(m_boundingBox.left, m_boundingBox.top));
+        m_rightShape->setSize(sf::Vector2f(m_boundingBox.width -  (m_boundingBox.width / 100 * m_percent), m_boundingBox.height));
+        m_rightShape->setPosition(sf::Vector2f(m_boundingBox.left + m_leftShape->getSize().x, m_boundingBox.top));
     }
     void ProgressBar::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
@@ -39,6 +42,7 @@ namespace legui
     void ProgressBar::setPercent(float percent)
     {
         m_percent = percent;
+        this->updateSize();
     }
     float ProgressBar::getPercent()
     {
