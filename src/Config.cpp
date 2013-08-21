@@ -34,6 +34,10 @@ namespace legui
             Config::m_floats["CURSOR_BLINK_RATE"] = 0.53;
             Config::m_colors["CURSOR_ACTIVE"] = sf::Color::White;
             Config::m_colors["CURSOR_UNACTIVE"] = sf::Color::Transparent;
+        //Progress Bar
+            Config::m_floats["PROGRESSBAR_OUTLINE_THICKNESS"] = 1;
+            Config::m_colors["PROGRESSBAR_OUTLINE_COLOR"] = sf::Color(0, 2, 100);
+            Config::m_colors["PROGRESSBAR_FILL_COLOR"] = sf::Color(56, 176, 168);
         //Push Button
             Config::m_colors["BUTTON_OUTLINE_FOCUSED"] = sf::Color(62, 79, 156, 190);
             Config::m_colors["BUTTON_OUTLINE"] = sf::Color(62, 79, 156, 20);
