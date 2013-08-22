@@ -18,6 +18,7 @@ namespace legui
              * @brief Only alignes the elements, doesn't give them a new size!
              */
             virtual void setBoundingBox(const sf::FloatRect &box);
+            virtual void updateSize();
             /**
              * @brief Sets the space between each element.
              *

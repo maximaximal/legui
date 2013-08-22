@@ -1,6 +1,7 @@
 #include <legui/Label.h>
 #include <legui/Config.h>
 #include <legui/FontManagerAbstract.h>
+#include <legui/Container.h>
 
 namespace legui
 {
@@ -24,12 +25,13 @@ namespace legui
     void Label::setBoundingBox(const sf::FloatRect &box)
     {
         Widget::setBoundingBox(box);
-        this->setCharacterSize((unsigned int) box.height);
+        m_boundingBox.width = m_text->getGlobalBounds().width;
+        m_boundingBox.height = m_text->getGlobalBounds().height;
 
         if(Config::getBool("LABEL_PIXELPERFECT_POSITION"))
-            m_text->setPosition(sf::Vector2f((int) box.left, (int) box.top));
+            m_text->setPosition(sf::Vector2f((int) box.left, (int) (box.top - m_boundingBox.height * 0.25)));
         else
-            m_text->setPosition(sf::Vector2f(box.left, box.top));
+            m_text->setPosition(sf::Vector2f(box.left, box.top - m_boundingBox.height * 0.25));
     }
     void Label::updateSize()
     {
@@ -51,6 +53,8 @@ namespace legui
         }
         m_boundingBox.width = m_text->getGlobalBounds().width;
         m_boundingBox.height = m_text->getGlobalBounds().height;
+        if(m_parent != 0)
+            m_parent->updateSize();
     }
     void Label::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {

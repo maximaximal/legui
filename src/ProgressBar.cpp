@@ -14,8 +14,8 @@ namespace legui
         m_rightShape->setOutlineThickness(Config::getFloat("PROGRESSBAR_OUTLINE_THICKNESS"));
         m_leftShape->setOutlineColor(Config::getColor("PROGRESSBAR_OUTLINE_COLOR"));
         m_rightShape->setOutlineColor(Config::getColor("PROGRESSBAR_OUTLINE_COLOR"));
-        m_leftShape->setFillColor(Config::getColor("PROGRESSBAR_FILL_COLOR"));
-        m_rightShape->setFillColor(Config::getColor("PROGRESSBAR_FILL_COLOR"));
+        m_leftShape->setFillColor(Config::getColor("PROGRESSBAR_FILL_COLOR_LEFT"));
+        m_rightShape->setFillColor(Config::getColor("PROGRESSBAR_FILL_COLOR_RIGHT"));
     }
     ProgressBar::~ProgressBar()
     {

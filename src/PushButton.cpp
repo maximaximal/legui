@@ -38,7 +38,7 @@ namespace legui
     {
         Clickable::setBoundingBox(box);
         m_frame->setBoundingBox(box);
-        m_label->setCharacterSize((unsigned int) box.height - 3);
+        m_label->setCharacterSize((unsigned int) box.height - 10);
         m_label->setBoundingBox(sf::FloatRect(m_boundingBox.left + m_boundingBox.width / 2 - m_label->getBoundingBox().width / 2, 
                     m_boundingBox.top + m_boundingBox.height / 2 - m_label->getBoundingBox().height / 2,
                     m_label->getBoundingBox().width, m_label->getBoundingBox().height));
