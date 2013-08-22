@@ -38,6 +38,10 @@ namespace legui
         m_letters.clear();
         m_string = "";
         m_cursorPos = 0;
+        m_xOffset = 0;
+        m_hasChanged = false;
+        m_isFinished = false;
+        m_queryCursorUpdate = false;
         updateCursorPos();
     }
 
@@ -114,6 +118,8 @@ namespace legui
         Clickable::setBoundingBox(box);
         m_frame->setBoundingBox(box);
         m_characterSize = (unsigned int) box.height;
+        updateLetterPos();
+        updateCursorPos();
     }
     void LineEdit::updateSize()
     {
@@ -153,7 +159,7 @@ namespace legui
     {
         //Update letter positions
         float kerning = 0;
-        float x = Clickable::m_boundingBox.left;
+        float x = m_boundingBox.left;
         const sf::Font &font = Config::getFontManager()->get(m_fontPath);
         for(std::size_t i = 0; i < m_letters.size(); ++i)
         {
@@ -198,7 +204,7 @@ namespace legui
         {
             this->appendCharacter(text[i]);
         }
-        this->applyStyle();
+        m_queryCursorUpdate = true;
     }
     void LineEdit::appendCharacter(sf::Uint32 character)
     {
