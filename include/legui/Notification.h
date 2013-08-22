@@ -2,6 +2,7 @@
 
 #include <legui/Clickable.h>
 #include <legui/NotificationData.h>
+#include <SFML/Graphics/Sprite.hpp>
 
 namespace legui
 {

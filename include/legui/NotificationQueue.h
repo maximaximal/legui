@@ -1,5 +1,8 @@
 #pragma once
 
+#include <stack>
+#include <legui/NotificationData.h>
+
 namespace legui
 {
     class NotificationQueue

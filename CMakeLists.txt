@@ -29,6 +29,10 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/PushButton.cpp
     ${PROJECT_SOURCE_DIR}/src/CenteredStrip.cpp
     ${PROJECT_SOURCE_DIR}/src/ProgressBar.cpp
+    ${PROJECT_SOURCE_DIR}/src/Notification.cpp
+    ${PROJECT_SOURCE_DIR}/src/NotificationData.cpp
+    ${PROJECT_SOURCE_DIR}/src/NotificationQueue.cpp
+    ${PROJECT_SOURCE_DIR}/src/NotificationsDisplay.cpp
     ${PROJECT_SOURCE_DIR}/src/Widget.cpp)
 
 add_library(legui SHARED ${SOURCES})
