@@ -40,7 +40,9 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/NotificationData.cpp
     ${PROJECT_SOURCE_DIR}/src/NotificationQueue.cpp
     ${PROJECT_SOURCE_DIR}/src/NotificationsDisplay.cpp
-    ${PROJECT_SOURCE_DIR}/src/Widget.cpp)
+    ${PROJECT_SOURCE_DIR}/src/Widget.cpp
+)
+FILE(GLOB header "${CMAKE_SOURCE_DIR}/include/legui/*.h")
 
 add_library(legui SHARED ${SOURCES})
 
@@ -50,3 +52,5 @@ target_link_libraries(legui ${SFML_LIBRARIES})
 
 list(APPEND CMAKE_CXX_FLAGS "-std=c++11 -pedantic")
 
+install(TARGETS legui DESTINATION lib)
+install(FILES ${header} DESTINATION include/legui)
