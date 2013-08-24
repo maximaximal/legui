@@ -1,0 +1,3 @@
+#define VERSION_MAJOR @legui_version_major@
+#define VERSION_MINOR @legui_version_minor@
+#define VERSION_BUILD @legui_version_build@

@@ -1,13 +1,20 @@
 cmake_minimum_required(VERSION 2.6)
-project(LEGUI)
+project(legui)
+
+set(legui_version_major 0)
+set(legui_version_minor 1)
+set(legui_version_build 0)
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/config.h.in"
+    "${PROJECT_BINARY_DIR}/config.h"
+)
 
 #Set the cmake module path
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 
-#Set the output directory
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
-
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories("${PROJECT_BINARY_DIR}")
 
 set(legui_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/include" PARENT_SCOPE)
 
@@ -38,10 +45,8 @@ set(SOURCES
 add_library(legui SHARED ${SOURCES})
 
 find_package(SFML 2 COMPONENTS system window graphics audio REQUIRED)
-if(SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(legui ${SFML_LIBRARIES})
-endif()
+include_directories(${SFML_INCLUDE_DIR})
+target_link_libraries(legui ${SFML_LIBRARIES})
 
 list(APPEND CMAKE_CXX_FLAGS "-std=c++11 -pedantic")
 
