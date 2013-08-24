@@ -1,14 +1,1 @@
-docs/
-obj/
-bin/
-lib/
-*.layout
-*.swp
-*.swo
-CMakeCache.txt
-CMakeFiles/
-Makefile
-cmake_install.cmake
-
-#Because MacOSX is stupid ;P
-*.DS_Store
+build
