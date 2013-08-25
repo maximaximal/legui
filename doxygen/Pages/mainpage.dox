@@ -1,0 +1,19 @@
+/**
+ * \mainpage LeGUI Doxygen Documentation
+ * 
+ * About LeGUI
+ * -----------
+ *
+ * LeGUI is a graphical user interface library primary designed for the use with SFML. It provides
+ * GUI functionality like pages, widgets, containers & bounding boxes. New elements are added by the
+ * min developers as needed in their projects, because the library is, most of the time, direcly embedded 
+ * into other applications.
+ *
+ * About the widget system
+ * -----------------------
+ * The widgets are organized in a "bounding box" system: Every widget needs to have a bounding box
+ * which represents their outlines. 
+ *
+ *
+ * Tis is the documentation for legui.
+ */
