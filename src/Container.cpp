@@ -18,6 +18,7 @@ namespace legui
     {
         for(auto &it : m_widgets)
         {
+            D_widgetRemoved(it);
             delete it;
         }
         m_widgets.clear();
@@ -61,6 +62,7 @@ namespace legui
         m_widgets.push_back(widget); 
         widget->setParent(this);
         return m_widgets.size() - 1;
+        D_widgetAdded(widget);
     }
     void Container::deleteWidget(Widget *widget)
     {
@@ -79,6 +81,7 @@ namespace legui
     {
         if(widget < m_widgets.size())
         {
+            this->D_widgetRemoved(m_widgets[widget]);
             delete m_widgets[widget];
             m_widgets.erase(m_widgets.begin() + widget);
         }
@@ -103,7 +106,9 @@ namespace legui
     {
         if(widget < m_widgets.size())
         {
+            legui::Widget *w = m_widgets[widget];
             m_widgets.erase(m_widgets.begin() + widget);
+            this->D_widgetRemoved(w);
         }
         else
         {
@@ -125,5 +130,13 @@ namespace legui
     PageManager* Container::getPageManager()
     {
         return m_pageManager;
+    }
+    void Container::D_widgetRemoved(Widget *widget)
+    {
+    
+    }
+    void Container::D_widgetAdded(Widget *widget)
+    {
+    
     }
 }

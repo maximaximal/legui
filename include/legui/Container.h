@@ -98,5 +98,17 @@ namespace legui
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
             std::vector<Widget*> m_widgets;
             PageManager *m_pageManager;
+            /**
+             * @brief Deriveable callback which is fired when a widget is added to the container.
+             *
+             * @param widget The widget that was added.
+             */
+            virtual void D_widgetAdded(Widget *widget);
+            /**
+             * @brief Deriveable callback which is fired when a widget is removed from the container. (Also called on clear())
+             *
+             * @param widget The widget that was removed.
+             */
+            virtual void D_widgetRemoved(Widget *widget);
     };
 }
