@@ -1,11 +1,13 @@
 #pragma once
 
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <legui/nano_signal_slot.hpp>
 #include <legui/MouseMoveListener.h>
 #include <legui/Clickable.h>
 
 namespace legui
 {
-    class Scrollbar : public Clickable, public MouseMoveListener
+    class Scrollbar : public Clickable 
     {
         public:
             enum Align {
@@ -16,24 +18,25 @@ namespace legui
             virtual ~Scrollbar();
             
             virtual void onUpdate(float frametime);
-            virtual void onEvent(const sf::Event &e);
-            /**
-             * @brief Needs the boundng box of the parent scrollable area.
-             */
+            virtual bool onEvent(const sf::Event &e);
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
 
             void setAlign(Scrollbar::Align align);
-            void setScrollable(Scrollable *scrollable);
+            void setScrollSpace(float space);
+
+            Nano::signal<void(float)>& onScrolled();
+            float scrolled();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-            virtual void mouseMoved(sf::Vector2f delta);
         private:
+            Nano::signal<void(float)> m_onScrolled;
             sf::RectangleShape *m_bar;
+            sf::RectangleShape *m_box;
             sf::VertexArray m_middleLines;
 
-            Scrollable *m_scrollable;
             Scrollbar::Align m_align;
-            sf::Vector2f m_scrollArea;
+            float m_scrollSpace;
+            float m_scrolled;
     };
 }
