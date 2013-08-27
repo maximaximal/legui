@@ -58,7 +58,7 @@ namespace legui
             {
                 if(e.mouseButton.button == sf::Mouse::Left)
                 {
-                    if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
+                    if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y) || m_pressed)
                     {
                         m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
                         setPressed(false);
