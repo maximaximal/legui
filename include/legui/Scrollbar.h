@@ -3,11 +3,11 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <legui/nano_signal_slot.hpp>
 #include <legui/MouseMoveListener.h>
-#include <legui/Scrollable.h>
+#include <legui/Clickable.h>
 
 namespace legui
 {
-    class Scrollbar : public Scrollable 
+    class Scrollbar : public Clickable
     {
         public:
             enum Align {
