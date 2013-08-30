@@ -14,16 +14,16 @@ namespace legui
     }
     void Scrollbar::onUpdate(float frametime)
     {
-        Clickable::onUpdate(frametime);
+        Scrollable::onUpdate(frametime);
         m_scrolled = 0;
     }
     bool Scrollbar::onEvent(const sf::Event &e)
     {
-        Clickable::onEvent(e);
+        Scrollable::onEvent(e);
     }
     void Scrollbar::setBoundingBox(const sf::FloatRect &box)
     {
-        Clickable::setBoundingBox(box);
+        Scrollable::setBoundingBox(box);
     }
     void Scrollbar::setScrollSpace(float space)
     {
