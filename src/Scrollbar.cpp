@@ -20,7 +20,7 @@ namespace legui
     }
     bool Scrollbar::onEvent(const sf::Event &e)
     {
-        Clickable::onEvent(e);
+        return Clickable::onEvent(e);
     }
     void Scrollbar::setBoundingBox(const sf::FloatRect &box)
     {

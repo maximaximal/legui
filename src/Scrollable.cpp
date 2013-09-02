@@ -9,6 +9,8 @@ namespace legui
         m_vBar = new Scrollbar();
         m_view = new sf::View();
         m_screenSize = screenSize;
+        m_hBarActive = false;
+        m_vBarActive = false;
     }
     Scrollable::~Scrollable()
     {
@@ -35,7 +37,6 @@ namespace legui
         {
             //Converts the mouse position of the event (relative to the window)
             //to be relative to the scrollable (includes the current offset of the scrollable).
-            
             sf::Event viewEvent = e;
             switch(viewEvent.type)
             {
@@ -45,7 +46,7 @@ namespace legui
                     break;
                 case sf::Event::MouseButtonPressed:
                     viewEvent.mouseButton.x += m_offset.x - m_boundingBox.left;
-                    viewEvent.mouseMove.y += m_offset.y - m_boundingBox.top;
+                    viewEvent.mouseButton.y += m_offset.y - m_boundingBox.top;
                     break;
                 case sf::Event::MouseButtonReleased:
                     viewEvent.mouseButton.x += m_offset.x - m_boundingBox.left;
@@ -104,18 +105,18 @@ namespace legui
     }
     void Scrollable::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
-        if(m_hBarActive)
-            target.draw(*m_hBar, states);
-        if(m_vBarActive)
-            target.draw(*m_vBar, states);
-
-        const sf::View &oldView = target.getView();
+        sf::View oldView = target.getView();
         target.setView(*m_view);
         for(auto &it : m_widgets)
         {
             target.draw(*it, states);
         }
         target.setView(oldView);
+        
+        if(m_hBarActive)
+            target.draw(*m_hBar, states);
+        if(m_vBarActive)
+            target.draw(*m_vBar, states);
     }
     void Scrollable::setHScroll(float scroll)
     {
