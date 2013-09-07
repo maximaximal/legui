@@ -13,7 +13,7 @@ namespace legui
             void setTitle(const std::string &title);
             void setDescription(const std::string &description);
             void setIconTexture(const std::string &iconTexture);
-            void setIconTextureRect(const std::string iconTextureRect);
+            void setIconTextureRect(const std::string &iconTextureRect);
             void setIconTextureNumber(unsigned int number);
 
             const std::string& getTitle();

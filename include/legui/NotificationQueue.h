@@ -8,10 +8,9 @@ namespace legui
     class NotificationQueue
     {
         public:
-            static const NotificationData& getNewest();
-            static const NotificationData& getOldest();
-            static void popNewest();
-            static void popOldest();
+            static const NotificationData& top();
+            static void pop();
+            static void push(NotificationData &data);
         private:
             NotificationQueue();
             ~NotificationQueue();
