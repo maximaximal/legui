@@ -18,10 +18,12 @@ namespace legui
 
             void fromNotificationData(const NotificationData &data);
             bool onClose();
+            void close();
         protected:
             virtual void D_onClicked(const sf::Vector2f &relPos);
         private:
             sf::Sprite *m_icon;
+            sf::Sprite *m_closeIcon;
             bool m_close;
     };
 }
