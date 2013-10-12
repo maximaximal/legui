@@ -1,5 +1,6 @@
 #include <legui/Config.h>
 #include <legui/FontManager.h>
+#include <legui/TextureManagerAbstract.h>
 #include <iostream>
 
 using namespace std;
@@ -14,15 +15,19 @@ namespace legui
         std::map<std::string, sf::Color> Config::m_colors = std::map<std::string, sf::Color>();
     //Define the font manager
         FontManagerAbstract* Config::m_fontManager = new FontManager();
-    
+    //Define the texture manager
+        TextureManagerAbstract* Config::m_textureManager = 0;
+
     Config::Config()
     {
-
+        
     }
     Config::~Config()
     {
         if(m_fontManager != 0)
             delete m_fontManager;
+        if(m_textureManager != 0)
+            delete m_textureManager;
     }
     void Config::loadDefaults()
     {
@@ -59,6 +64,8 @@ namespace legui
         //Default Colors
             Config::m_colors["FRAME_OUTLINE_COLOR"] = sf::Color(120, 120, 120); //Darker Grey
             Config::m_colors["FRAME_FILL_COLOR"] = sf::Color(255, 255, 255, 0); //Transparent
+        //TextureManager
+            Config::m_bools["USE_TEXTURES"] = false;
     }
     std::string Config::getString(const std::string &ID)
     {
@@ -124,8 +131,21 @@ namespace legui
         }
         Config::m_fontManager = fontManager;
     }
+    void Config::setTextureManager(TextureManagerAbstract *textureManager)
+    {
+        if(Config::m_textureManager != 0)
+        {
+            delete Config::m_textureManager;
+        }
+        Config::m_textureManager = textureManager;
+        Config::m_bools["USE_TEXTURES"] = true;
+    }
     FontManagerAbstract* Config::getFontManager()
     {
         return Config::m_fontManager;
+    }
+    TextureManagerAbstract* Config::getTextureManager()
+    {
+        return Config::m_textureManager;
     }
 }
