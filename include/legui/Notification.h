@@ -3,6 +3,7 @@
 #include <legui/Clickable.h>
 #include <legui/NotificationData.h>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 namespace legui
 {
@@ -13,9 +14,23 @@ namespace legui
             virtual ~Notification();
 
             virtual void onUpdate(float frametime);
+            virtual bool onEvent(const sf::Event &e);
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
 
+            /* Implementation coming
+            void setTitle(const std::string &title);
+            void setDescription(const std::string &description);
+            void setIconTexture(const std::string &iconTexture);
+            void setIconTextureRect(const std::string &iconTextureRect);
+            void setIconTextureNumber(unsigned int number);
+
+            const std::string& getTitle();
+            const std::string& getDescription();
+            const std::string& getIconTexture();
+            const std::string& getIconTextureRect();
+            unsigned int getIconTextureNumber();
+            */
             void fromNotificationData(const NotificationData &data);
             bool onClose();
             void close();
@@ -24,6 +39,12 @@ namespace legui
         private:
             sf::Sprite *m_icon;
             sf::Sprite *m_closeIcon;
+            sf::RectangleShape *m_closeShape;
+            sf::FloatRect m_closeRect;
+            
+            std::string m_texture;
+            std::string m_textureRect;
+            bool m_textureNumber;
             bool m_close;
     };
 }
