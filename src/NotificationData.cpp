@@ -32,23 +32,23 @@ namespace legui
         m_textureNumber = iconTextureNumber;
     }
     
-    const std::string &NotificationData::getTitle()
+    const std::string &NotificationData::getTitle() const
     {
         return m_title;
     }
-    const std::string &NotificationData::getDescription()
+    const std::string &NotificationData::getDescription() const
     {
         return m_description;
     }
-    const std::string &NotificationData::getIconTexture()
+    const std::string &NotificationData::getIconTexture() const
     {
         return m_texture;
     }
-    const std::string &NotificationData::getIconTextureRect()
+    const std::string &NotificationData::getIconTextureRect() const
     {
         return m_textureRect;
     }
-    unsigned int NotificationData::getIconTextureNumber()
+    unsigned int NotificationData::getIconTextureNumber() const
     {
         return m_textureNumber;
     }

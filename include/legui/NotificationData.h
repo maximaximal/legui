@@ -16,11 +16,11 @@ namespace legui
             void setIconTextureRect(const std::string &iconTextureRect);
             void setIconTextureNumber(unsigned int number);
 
-            const std::string& getTitle();
-            const std::string& getDescription();
-            const std::string& getIconTexture();
-            const std::string& getIconTextureRect();
-            unsigned int getIconTextureNumber();
+            const std::string& getTitle() const;
+            const std::string& getDescription() const;
+            const std::string& getIconTexture() const;
+            const std::string& getIconTextureRect() const;
+            unsigned int getIconTextureNumber() const;
         private:
             std::string m_title;
             std::string m_description;
