@@ -1,6 +1,7 @@
 #include <legui/Notification.h>
 #include <legui/Config.h>
 #include <legui/TextureManagerAbstract.h>
+#include <legui/FontStyle.h>
 
 namespace legui
 {
@@ -21,7 +22,16 @@ namespace legui
         else
         {
             m_closeShape = new sf::RectangleShape();
+            m_closeShape->setOutlineThickness(1);
+            m_closeShape->setOutlineColor(Config::getColor("NOTIFICATION_CLOSE_OUTLINE"));
+            m_closeShape->setFillColor(Config::getColor("NOTIFICATION_CLOSE_FILL"));
         }
+
+        m_title = new legui::Label();
+        m_description = new legui::Label();
+
+        m_title->setStyle(FontStyle::Heading2);
+        m_description->setStyle(FontStyle::Regular);
 
         m_closeRect.width = 16;
         m_closeRect.height = 16;
@@ -29,6 +39,8 @@ namespace legui
     Notification::~Notification()
     {
         delete m_icon;
+        delete m_title;
+        delete m_description;
         if(m_closeShape != 0)
             delete m_closeShape;
         if(m_closeIcon != 0)
@@ -37,10 +49,12 @@ namespace legui
 
     void Notification::onUpdate(float frametime)
     {
-    
+        Clickable::onUpdate(frametime);
     }
     bool Notification::onEvent(const sf::Event &e)
     {
+        bool block = false;
+        block = Clickable::onEvent(e);
         if(e.type == sf::Event::MouseMoved)
         {
             if(m_closeRect.contains(e.mouseMove.x, e.mouseMove.y))
@@ -72,8 +86,7 @@ namespace legui
             }
         }
 
-        //Don't block any other events!
-        return false;
+        return block;
     }
     void Notification::setBoundingBox(const sf::FloatRect &box)
     {
@@ -82,6 +95,7 @@ namespace legui
     }
     void Notification::updateSize()
     {
+        Clickable::updateSize();
         m_icon->setPosition(m_boundingBox.left, m_boundingBox.top + m_boundingBox.width / 2 - m_icon->getGlobalBounds().height / 2);
         m_closeRect.left = m_boundingBox.left + m_boundingBox.width - 32;
         m_closeRect.top = m_boundingBox.top + m_boundingBox.height - 32;
