@@ -58,9 +58,25 @@ namespace legui
              * @param origin The origin.
              */
             void setOrigin(const sf::Vector2f &origin);
+            /**
+             * @brief Sets the width the text should wrap to.
+             *
+             * If the containing string becomes longer than the given width,
+             * a new line will be inserted to split the string in multiple lines to fit
+             * the width.
+             *
+             * @param width The width the text should wrap to.
+             */
+            void setWrap(float width);
+            /**
+             * @brief Clears the wrap of the text.
+             *
+             * No new lines will be inserted and the text will be displayed directly again.
+             */
+            void clearWrap();
             const sf::String& getString(); 
             /**
-             * @brief If LABEL_RECT_BORDER is set, this si the string in the visible area.
+             * @brief If LABEL_RECT_BORDER is set, this is the string in the visible area.
              */
             const sf::String& getVisibleString(); 
             const sf::Font* getFont();
@@ -77,5 +93,6 @@ namespace legui
             sf::Text *m_text;
             sf::String m_string;
             FontStyle m_style;
+            float m_wrappingWidth;
     };
 }
