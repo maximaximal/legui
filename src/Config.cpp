@@ -64,6 +64,14 @@ namespace legui
         //Default Colors
             Config::m_colors["FRAME_OUTLINE_COLOR"] = sf::Color(120, 120, 120); //Darker Grey
             Config::m_colors["FRAME_FILL_COLOR"] = sf::Color(255, 255, 255, 0); //Transparent
+        //Notifications
+            Config::m_colors["NOTIFICATION_CLOSE_FILL_HOVER"] = sf::Color(100, 100, 100);
+            Config::m_colors["NOTIFICATION_CLOSE_OUTLINE_HOVER"] = sf::Color(40, 40, 40);
+            Config::m_colors["NOTIFICATION_CLOSE_FILL"] = sf::Color(150, 150, 150);
+            Config::m_colors["NOTIFICATION_CLOSE_OUTLINE"] = sf::Color(80, 80, 80);
+            Config::m_strings["NOTIFICATION_CLOSE_ICONTEX_RECT"] = "NotificationClose";
+            Config::m_strings["NOTIFICATION_CLOSE_ICONTEX_RECT_HOVER"] = "NotificationCloseHover";
+            Config::m_strings["NOTIFICATION_CLOSE_ICONTEX"] = "Data/Textures/LeGUI.xml";
         //TextureManager
             Config::m_bools["USE_TEXTURES"] = false;
     }
