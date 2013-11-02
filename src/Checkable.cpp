@@ -12,7 +12,7 @@ namespace legui
     
     }
 
-    bool Checkable::isChecked()
+    bool Checkable::isChecked() const
     {
         return m_state;
     }
@@ -23,6 +23,10 @@ namespace legui
     void Checkable::D_unchecked()
     {
         //Derive only!
+    }
+    void Checkable::draw(sf::RenderTarget &target, sf::RenderStates states) const
+    {
+        //Nothing to show!
     }
     void Checkable::D_onReleased(const sf::Vector2f &relPos)
     {
