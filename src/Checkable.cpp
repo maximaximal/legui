@@ -26,7 +26,11 @@ namespace legui
     }
     void Checkable::D_onReleased(const sf::Vector2f &relPos)
     {
-        m_state = !m_state;
+        setChecked(!m_state);
+    }
+    void Checkable::setChecked(bool state)
+    {
+        m_state = state;
         if(m_state)
         {
             D_checked();

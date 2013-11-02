@@ -12,10 +12,11 @@ namespace legui
     class Checkable : public legui::Clickable
     {
         public:
-            Checkable(Container *parent);
+            Checkable(Container *parent = 0);
             virtual ~Checkable();
             
             bool isChecked();
+            void setChecked(bool state);
             Nano::signal<void()>& onChecked();
             Nano::signal<void()>& onUnchecked();
         protected:
