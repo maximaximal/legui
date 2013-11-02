@@ -42,6 +42,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/NotificationsDisplay.cpp
     ${PROJECT_SOURCE_DIR}/src/Scrollable.cpp
     ${PROJECT_SOURCE_DIR}/src/Scrollbar.cpp
+    ${PROJECT_SOURCE_DIR}/src/Checkable.cpp
     ${PROJECT_SOURCE_DIR}/src/Widget.cpp
 )
 FILE(GLOB header "${CMAKE_SOURCE_DIR}/include/legui/*.h")
