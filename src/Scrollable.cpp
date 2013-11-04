@@ -1,4 +1,7 @@
 #include <legui/Scrollable.h>
+#include <iostream>
+
+using namespace std;
 
 namespace legui
 {
@@ -23,8 +26,6 @@ namespace legui
     {
         if(e.type == sf::Event::MouseMoved)
         {
-            m_oldPos.x = e.mouseMove.x;
-            m_oldPos.y = e.mouseMove.y;
             if(m_dragging)
             {
                 sf::Vector2f delta;
@@ -33,10 +34,12 @@ namespace legui
                 m_view->move(delta);
                 m_offset += delta;
             }
+            m_oldPos.x = e.mouseMove.x;
+            m_oldPos.y = e.mouseMove.y;
         }
         if(e.type == sf::Event::MouseButtonPressed)
         {
-            if(m_boundingBox.contains(e.mouseMove.x, e.mouseMove.y))
+            if(m_boundingBox.contains(e.mouseWheel.x, e.mouseWheel.y))
             {
                 if(e.mouseButton.button == sf::Mouse::Middle)
                 {
