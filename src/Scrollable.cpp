@@ -11,6 +11,7 @@ namespace legui
         m_screenSize = screenSize;
         m_hBarActive = false;
         m_vBarActive = false;
+        m_dragging = false;
     }
     Scrollable::~Scrollable()
     {
@@ -20,6 +21,36 @@ namespace legui
     }
     bool Scrollable::onEvent(const sf::Event &e)
     {
+        if(e.type == sf::Event::MouseMoved)
+        {
+            m_oldPos.x = e.mouseMove.x;
+            m_oldPos.y = e.mouseMove.y;
+            if(m_dragging)
+            {
+                sf::Vector2f delta;
+                delta.x = m_oldPos.x - e.mouseMove.x;
+                delta.y = m_oldPos.y - e.mouseMove.y;
+                m_view->move(delta);
+                m_offset += delta;
+            }
+        }
+        if(e.type == sf::Event::MouseButtonPressed)
+        {
+            if(m_boundingBox.contains(e.mouseMove.x, e.mouseMove.y))
+            {
+                if(e.mouseButton.button == sf::Mouse::Middle)
+                {
+                    m_dragging = true;
+                }
+            }
+        }
+        if(e.type == sf::Event::MouseButtonReleased)
+        {
+            if(e.mouseButton.button == sf::Mouse::Middle)
+            {
+                m_dragging = false;
+            }
+        }
         //Self-Update the internal screen size.
         if(e.type == sf::Event::Resized)
         {

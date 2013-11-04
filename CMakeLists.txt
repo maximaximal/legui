@@ -32,6 +32,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/PageManager.cpp
     ${PROJECT_SOURCE_DIR}/src/FontStyle.cpp
     ${PROJECT_SOURCE_DIR}/src/LineEdit.cpp
+    ${PROJECT_SOURCE_DIR}/src/NumberInput.cpp
     ${PROJECT_SOURCE_DIR}/src/Cursor.cpp
     ${PROJECT_SOURCE_DIR}/src/PushButton.cpp
     ${PROJECT_SOURCE_DIR}/src/CenteredStrip.cpp

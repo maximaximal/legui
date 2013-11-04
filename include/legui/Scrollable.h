@@ -25,8 +25,10 @@ namespace legui
             Scrollbar *m_vBar;
             bool m_hBarActive;
             bool m_vBarActive;
+            bool m_dragging;
             sf::Vector2f m_internSize;
             sf::Vector2f m_offset;
+            sf::Vector2f m_oldPos;
             sf::Vector2u m_screenSize;
             sf::View *m_view;
     };
