@@ -30,6 +30,7 @@ namespace legui
                 {
                     if(e.key.code == sf::Keyboard::Return)
                     {
+                        block = true;
                         m_relPos = sf::Vector2f(0, 0);
                         setPressed(true);
                     }
@@ -38,6 +39,7 @@ namespace legui
                 {
                     if(e.key.code == sf::Keyboard::Return)
                     {
+                        block = true;
                         m_relPos = sf::Vector2f(0, 0);
                         setPressed(false);
                     }
@@ -49,6 +51,7 @@ namespace legui
                 {
                     if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
                     {
+                        block = true;
                         m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
                         setPressed(true);
                     }
@@ -60,6 +63,7 @@ namespace legui
                 {
                     if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y) || m_pressed)
                     {
+                        block = true;
                         m_relPos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y) - sf::Vector2f(m_boundingBox.left, m_boundingBox.top);
                         setPressed(false);
                     }
