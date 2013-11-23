@@ -24,4 +24,11 @@ namespace legui
     {
         m_notifications.push(data);
     }
+    bool NotificationQueue::newNotifications()
+    {
+        if(m_notifications.size() > 0)
+            return true;
+        else
+            return false;
+    }
 }

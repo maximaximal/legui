@@ -72,6 +72,7 @@ namespace legui
             Config::m_strings["NOTIFICATION_CLOSE_ICONTEX_RECT"] = "NotificationClose";
             Config::m_strings["NOTIFICATION_CLOSE_ICONTEX_RECT_HOVER"] = "NotificationCloseHover";
             Config::m_strings["NOTIFICATION_CLOSE_ICONTEX"] = "Data/Textures/LeGUI.xml";
+            Config::m_ints["NOTIFICATIONLIST_MARGIN"] = 10;
         //TextureManager
             Config::m_bools["USE_TEXTURES"] = false;
     }

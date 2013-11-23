@@ -2,6 +2,13 @@
 #include <legui/Config.h>
 #include <legui/FontManagerAbstract.h>
 #include <legui/Container.h>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
+#include <iostream>
+
+using namespace std;
 
 namespace legui
 {
@@ -11,6 +18,7 @@ namespace legui
         m_text = new sf::Text();
         this->setString(text);
         this->setStyle(style);
+        m_wrappingWidth = 0;
     }
     Label::~Label()
     {
@@ -63,22 +71,26 @@ namespace legui
     void Label::setCharacterSize(unsigned int size)
     {
         m_text->setCharacterSize(size);
+        updateWrap();
         this->updateSize();
     }
     void Label::setFont(const sf::Font &font)
     {
         m_text->setFont(font);
+        updateWrap();
         this->updateSize();
     }
     void Label::setString(const sf::String &text)
     {
         m_text->setString(text);
+        updateWrap();
         m_string = text;
         this->updateSize();
     }
     void Label::setFontStyle(sf::Text::Style style)
     {
         m_text->setStyle(style);
+        updateWrap();
         this->updateSize();
     }
     void Label::setOrigin(const sf::Vector2f &origin)
@@ -112,5 +124,55 @@ namespace legui
     sf::Vector2f Label::getSize()
     {
         return sf::Vector2f(m_text->getLocalBounds().width, m_text->getLocalBounds().height);
+    }
+    void Label::setWrap(float width)
+    {
+        m_wrappingWidth = width;
+        this->updateWrap();
+        //cout << "WRAP: " << width << endl;
+    }
+    void Label::updateWrap()
+    {
+        if(m_wrappingWidth == 0)
+        {
+            //No wrapping neccessary - deactivated
+        }
+        else
+        {
+            float lineWidth = 0;
+            sf::String out;
+            std::vector<std::string> words;
+            std::stringstream ss(m_string.toAnsiString());
+            std::string item;
+            char delim = 32; //Space
+            bool bold = false;
+            if(m_text->getStyle() & sf::Text::Bold)
+                bold = true;
+            while (std::getline(ss, item, delim)) {
+                words.push_back(item);
+            }  
+            for(std::size_t i = 0; i < words.size(); ++i)
+            {
+                float width = 0;
+                for(std::size_t j = 0; j < words[i].size(); ++j)
+                {
+                    sf::Glyph glyph = m_text->getFont()->getGlyph(words[i][j], m_text->getCharacterSize(), bold);
+                    width += glyph.advance;
+                }
+                lineWidth += width;;
+                if(lineWidth > m_wrappingWidth)
+                {
+                    out += "\n" + words[i] + " ";
+                    lineWidth = 0;
+                }
+                else
+                {
+                    out += words[i] + " ";
+                }
+            }
+            m_string = out;
+            m_text->setString(out);
+            updateSize();
+        }
     }
 }

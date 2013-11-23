@@ -8,6 +8,7 @@ namespace legui
     {
         public: 
             NotificationData(const std::string &title, const std::string &description);
+            NotificationData(const NotificationData &other);
             virtual ~NotificationData();
 
             void setTitle(const std::string &title);

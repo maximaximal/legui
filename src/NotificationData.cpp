@@ -4,7 +4,16 @@ namespace legui
 {
     NotificationData::NotificationData(const std::string &title, const std::string &description)
     {
-    
+        m_title = title;
+        m_description = description;
+    }
+    NotificationData::NotificationData(const NotificationData &other)
+    {
+        m_title = other.getTitle();
+        m_description = other.getDescription();
+        m_texture = other.getIconTexture();
+        m_textureRect = other.getIconTextureRect();
+        m_textureNumber = other.getIconTextureNumber();
     }
     NotificationData::~NotificationData()
     {

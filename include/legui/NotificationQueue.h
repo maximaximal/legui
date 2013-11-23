@@ -9,6 +9,7 @@ namespace legui
     {
         public:
             static const NotificationData& top();
+            static bool newNotifications();
             static void pop();
             static void push(const NotificationData &data);
         private:

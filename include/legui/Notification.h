@@ -36,11 +36,13 @@ namespace legui
             void close();
         protected:
             virtual void D_onClicked(const sf::Vector2f &relPos);
+            virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         private:
             sf::Sprite *m_icon;
             sf::Sprite *m_closeIcon;
             sf::RectangleShape *m_closeShape;
             sf::FloatRect m_closeRect;
+            sf::Vector2i m_iconRect;
             
             legui::Label *m_title;
             legui::Label *m_description;

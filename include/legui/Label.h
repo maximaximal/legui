@@ -89,6 +89,7 @@ namespace legui
             sf::Vector2f getSize();
         protected:
             virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+            void updateWrap();
         private:
             sf::Text *m_text;
             sf::String m_string;

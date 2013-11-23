@@ -2,6 +2,9 @@
 #include <legui/Config.h>
 #include <legui/TextureManagerAbstract.h>
 #include <legui/FontStyle.h>
+#include <iostream>
+
+using namespace std;
 
 namespace legui
 {
@@ -9,6 +12,7 @@ namespace legui
         : Clickable(parent)
     {
         m_closeIcon = 0;
+        m_close = false;
         m_closeShape = 0;
 
         m_icon = new sf::Sprite();
@@ -30,7 +34,7 @@ namespace legui
         m_title = new legui::Label();
         m_description = new legui::Label();
 
-        m_title->setStyle(FontStyle::Heading2);
+        m_title->setStyle(FontStyle::Heading4);
         m_description->setStyle(FontStyle::Regular);
 
         m_closeRect.width = 16;
@@ -96,7 +100,18 @@ namespace legui
     void Notification::updateSize()
     {
         Clickable::updateSize();
-        m_icon->setPosition(m_boundingBox.left, m_boundingBox.top + m_boundingBox.width / 2 - m_icon->getGlobalBounds().height / 2);
+        m_icon->setPosition(m_boundingBox.left + 5, m_boundingBox.top + m_boundingBox.height / 2 - m_icon->getGlobalBounds().height / 2);
+        m_title->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 15);
+        m_description->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 15);
+        m_title->setBoundingBox(sf::FloatRect(m_boundingBox.left + 5 + m_icon->getGlobalBounds().width + 5, 
+                m_boundingBox.top + 5, 
+                m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
+                Config::getFloat("STANDARD_HEIGHT")));
+        m_description->setBoundingBox(sf::FloatRect(m_boundingBox.left + 5 + m_icon->getGlobalBounds().width + 5, 
+                m_title->getBoundingBox().top + m_title->getBoundingBox().height + 5,
+                m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
+                Config::getFloat("STANDARD_HEIGHT")));
+        m_boundingBox.height = m_title->getBoundingBox().height+ m_description->getBoundingBox().height + 20;
         m_closeRect.left = m_boundingBox.left + m_boundingBox.width - 32;
         m_closeRect.top = m_boundingBox.top + m_boundingBox.height - 32;
     }
@@ -119,6 +134,17 @@ namespace legui
         }
     
     }
+    void Notification::draw(sf::RenderTarget &target, sf::RenderStates states) const
+    {
+        target.draw(*m_title, states);
+        target.draw(*m_description, states);
+        if(m_icon)
+            target.draw(*m_icon, states);
+        if(m_closeShape)
+            target.draw(*m_closeShape, states);
+        if(m_closeIcon)
+            target.draw(*m_closeIcon, states);
+    }
     bool Notification::onClose()
     {
         return m_close;
@@ -139,18 +165,27 @@ namespace legui
     }
     void Notification::setIconTexture(const std::string &texture)
     {
-        m_icon->setTexture(Config::getTextureManager()->get(texture));
-        m_texture = texture;
+        if(Config::getBool("USE_TEXTURES"))
+        {
+            m_icon->setTexture(Config::getTextureManager()->get(texture));
+            m_texture = texture;
+        }
     }
     void Notification::setIconTextureRect(const std::string &rect)
     {
-        m_textureRect = rect;
-        m_icon->setTextureRect(Config::getTextureManager()->getRect(m_texture, m_textureRect, m_textureNumber));
+        if(Config::getBool("USE_TEXTURES"))
+        {
+            m_textureRect = rect;
+            m_icon->setTextureRect(Config::getTextureManager()->getRect(m_texture, m_textureRect, m_textureNumber));
+        }
     }
     void Notification::setIconTextureNumber(unsigned int number)
     {
-        m_textureNumber = number;
-        m_icon->setTextureRect(Config::getTextureManager()->getRect(m_texture, m_textureRect, m_textureNumber));
+        if(Config::getBool("USE_TEXTURES"))
+        {
+            m_textureNumber = number;
+            m_icon->setTextureRect(Config::getTextureManager()->getRect(m_texture, m_textureRect, m_textureNumber));
+        }
     }
     const std::string& Notification::getTitle()
     {

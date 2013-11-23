@@ -1,7 +1,10 @@
 #pragma once
 
+#include <memory>
+#include <vector>
 #include <legui/Container.h>
 #include <legui/Clickable.h>
+#include <legui/Notification.h>
 
 namespace legui
 {
@@ -15,5 +18,7 @@ namespace legui
             virtual void setBoundingBox(const sf::FloatRect &box);
             virtual void updateSize();
         protected:
+            virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+            std::vector<std::unique_ptr<Notification> > m_notifications;
     };
 }
