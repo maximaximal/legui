@@ -105,15 +105,20 @@ namespace legui
                 m_boundingBox.top + 5, 
                 m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
                 Config::getFloat("STANDARD_HEIGHT")));
-        m_title->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 35);
+        m_title->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 40);
         m_description->setBoundingBox(sf::FloatRect(m_boundingBox.left + 5 + m_icon->getGlobalBounds().width + 5, 
-                m_title->getBoundingBox().top + m_title->getBoundingBox().height + 5,
+                m_title->getBoundingBox().top + m_title->getBoundingBox().height + 15,
                 m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
                 Config::getFloat("STANDARD_HEIGHT")));
-        m_description->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 35);
-        m_boundingBox.height = m_title->getBoundingBox().height + m_description->getBoundingBox().height + 40;
-        m_closeRect.left = m_boundingBox.left + m_boundingBox.width - 32;
-        m_closeRect.top = m_boundingBox.top + m_boundingBox.height - 32;
+        m_description->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 40);
+        m_boundingBox.height = m_title->getBoundingBox().height + m_description->getBoundingBox().height + 5;
+        m_closeRect.left = m_boundingBox.left + m_boundingBox.width - 16;
+        m_closeRect.top = m_boundingBox.top;
+        if(m_closeShape != 0)
+        {
+            m_closeShape->setPosition(sf::Vector2f(m_closeRect.left, m_closeRect.top));
+            m_closeShape->setSize(sf::Vector2f(m_closeRect.width, m_closeRect.height));
+        }
     }
 
     void Notification::fromNotificationData(const NotificationData &data)
@@ -129,7 +134,7 @@ namespace legui
         if(m_closeRect.contains(relPos.x + m_boundingBox.left, relPos.y + m_boundingBox.top))
         {
             //The close button has been pressed.
-
+            
             this->close();
         }
     
