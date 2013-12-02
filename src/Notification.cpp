@@ -111,7 +111,7 @@ namespace legui
                 m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
                 Config::getFloat("STANDARD_HEIGHT")));
         m_description->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 40);
-        m_boundingBox.height = m_title->getBoundingBox().height + m_description->getBoundingBox().height + 5;
+        m_boundingBox.height = m_title->getBoundingBox().height + m_description->getBoundingBox().height + 10;
         m_closeRect.left = m_boundingBox.left + m_boundingBox.width - 16;
         m_closeRect.top = m_boundingBox.top;
         if(m_closeShape != 0)
