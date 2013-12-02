@@ -43,7 +43,8 @@ namespace legui
         Container::onUpdate(frametime);
         
         //Update the size if requested.
-        updateSize();
+        if(update)
+            updateSize();
     }
     void NotificationsDisplay::setBoundingBox(const sf::FloatRect &box)
     {
@@ -60,7 +61,6 @@ namespace legui
             if(i > 0)
                 x = x + m_notifications[i - 1]->getBoundingBox().height + Config::getInt("NOTIFICATIONLIST_MARGIN");
             box.top = x;
-            cout << "WIDTH: " << box.width << endl;
             m_notifications[i]->setBoundingBox(box);
         }
     }

@@ -95,5 +95,6 @@ namespace legui
             sf::String m_string;
             FontStyle m_style;
             float m_wrappingWidth;
+            bool m_updateLocally;
     };
 }

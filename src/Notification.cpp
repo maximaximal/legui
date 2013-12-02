@@ -101,17 +101,17 @@ namespace legui
     {
         Clickable::updateSize();
         m_icon->setPosition(m_boundingBox.left + 5, m_boundingBox.top + m_boundingBox.height / 2 - m_icon->getGlobalBounds().height / 2);
-        m_title->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 15);
-        m_description->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 15);
         m_title->setBoundingBox(sf::FloatRect(m_boundingBox.left + 5 + m_icon->getGlobalBounds().width + 5, 
                 m_boundingBox.top + 5, 
                 m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
                 Config::getFloat("STANDARD_HEIGHT")));
+        m_title->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 35);
         m_description->setBoundingBox(sf::FloatRect(m_boundingBox.left + 5 + m_icon->getGlobalBounds().width + 5, 
                 m_title->getBoundingBox().top + m_title->getBoundingBox().height + 5,
                 m_boundingBox.width - m_icon->getGlobalBounds().width - 15,
                 Config::getFloat("STANDARD_HEIGHT")));
-        m_boundingBox.height = m_title->getBoundingBox().height+ m_description->getBoundingBox().height + 20;
+        m_description->setWrap(m_boundingBox.width - m_icon->getGlobalBounds().width - 35);
+        m_boundingBox.height = m_title->getBoundingBox().height + m_description->getBoundingBox().height + 40;
         m_closeRect.left = m_boundingBox.left + m_boundingBox.width - 32;
         m_closeRect.top = m_boundingBox.top + m_boundingBox.height - 32;
     }

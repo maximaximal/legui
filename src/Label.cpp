@@ -19,6 +19,7 @@ namespace legui
         this->setString(text);
         this->setStyle(style);
         m_wrappingWidth = 0;
+        m_updateLocally = false;
     }
     Label::~Label()
     {
@@ -40,11 +41,11 @@ namespace legui
             m_text->setPosition(sf::Vector2f((int) box.left, (int) (box.top - m_boundingBox.height * 0.25)));
         else
             m_text->setPosition(sf::Vector2f(box.left, box.top - m_boundingBox.height * 0.25));
+
+        this->updateWrap();
     }
     void Label::updateSize()
     {
-        Widget::updateSize();
-
         if(Config::getBool("LABEL_RECT_BORDER"))
         {
             sf::String currentlyVisible("");
@@ -62,7 +63,12 @@ namespace legui
         m_boundingBox.width = m_text->getGlobalBounds().width;
         m_boundingBox.height = m_text->getGlobalBounds().height;
         if(m_parent != 0)
-            m_parent->updateSize();
+        {
+            if(m_updateLocally == false)
+                m_parent->updateSize();
+            else
+                m_updateLocally = false;
+        }
     }
     void Label::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
@@ -154,25 +160,26 @@ namespace legui
             for(std::size_t i = 0; i < words.size(); ++i)
             {
                 float width = 0;
+                bool lineFlag = true;
                 for(std::size_t j = 0; j < words[i].size(); ++j)
                 {
                     sf::Glyph glyph = m_text->getFont()->getGlyph(words[i][j], m_text->getCharacterSize(), bold);
                     width += glyph.advance;
                 }
-                lineWidth += width;;
-                if(lineWidth > m_wrappingWidth)
+                lineWidth += width;
+                if(lineWidth >= m_wrappingWidth && lineFlag)
                 {
                     out += "\n" + words[i] + " ";
                     lineWidth = 0;
+                    lineFlag = false;
                 }
                 else
                 {
                     out += words[i] + " ";
+                    lineFlag = true;
                 }
             }
-            m_string = out;
             m_text->setString(out);
-            updateSize();
         }
     }
 }
