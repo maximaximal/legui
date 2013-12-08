@@ -16,10 +16,10 @@ namespace legui
         : Widget(parent)
     {
         m_text = new sf::Text();
-        this->setString(text);
-        this->setStyle(style);
         m_wrappingWidth = 0;
         m_updateLocally = false;
+        this->setString(text);
+        this->setStyle(style);
     }
     Label::~Label()
     {
