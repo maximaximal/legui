@@ -1,119 +1,98 @@
 #include <legui/Focusable.h>
 
-namespace legui
-{
-    Focusable::Focusable(Container *parent)
-        : Hoverable(parent)
-    {
-        m_focusLost = false;
-        m_focusGained = false;
-        m_isFocused = false;
-        m_nextFocusable = 0;
-    }
-    void Focusable::onUpdate(float frametime)
-    {
-        //Update the hoverable widget.
-        Hoverable::onUpdate(frametime);
+namespace legui {
+Focusable::Focusable(Container* parent)
+  : Hoverable(parent) {
+  m_focusLost = false;
+  m_focusGained = false;
+  m_isFocused = false;
+  m_nextFocusable = 0;
+}
+void
+Focusable::onUpdate(float frametime) {
+  // Update the hoverable widget.
+  Hoverable::onUpdate(frametime);
 
-        m_focusLost = false;
-        m_focusGained = false;
-    }
-    bool Focusable::onEvent(const sf::Event &e)
-    {
-        //Update the hoverable widget.
-        bool block = Hoverable::onEvent(e);
+  m_focusLost = false;
+  m_focusGained = false;
+}
+bool
+Focusable::onEvent(const sf::Event& e) {
+  // Update the hoverable widget.
+  bool block = Hoverable::onEvent(e);
 
-        if(!block)
-        {
-            if(e.type == sf::Event::KeyPressed)
-            {
-                if(isFocused())
-                {
-                    if(e.key.code == sf::Keyboard::Tab)
-                    {
-                        if(m_nextFocusable != 0)
-                        {
-                            m_nextFocusable->setFocus(true);
-                            this->setFocus(false);
-                            block = true;
-                        }
-                    }
-                }
-            }
-            if(e.type == sf::Event::MouseButtonPressed)
-            {
-                if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y))
-                {
-                    this->setFocus(true);
-                }
-                else
-                {
-                    this->setFocus(false);
-                }
-            }
-        }
-        return block;
-    }
-    void Focusable::setFocus(bool state)
-    {
-        if(m_isFocused)
-        {
-            if(!state)
-            {
-                m_focusLost = true;
-                m_onFocusLost();
-                D_onFocusLost();
-            }
-        }
-        else
-        {
-            if(state)
-            {
-                m_focusGained = true;
-                m_onFocusGained();
-                D_onFocusGained();
-            }
-        }
-        m_isFocused = state;
-    }
-    void Focusable::setNextFocusable(Focusable *next)
-    {
-        m_nextFocusable = next;
-    }
-    void Focusable::focusToNext()
-    {
-        if(m_nextFocusable)
-        {
-            this->setFocus(false);
+  if(!block) {
+    if(e.type == sf::Event::KeyPressed) {
+      if(isFocused()) {
+        if(e.key.code == sf::Keyboard::Tab) {
+          if(m_nextFocusable != 0) {
             m_nextFocusable->setFocus(true);
+            this->setFocus(false);
+            block = true;
+          }
         }
+      }
     }
-    bool Focusable::isFocused() const
-    {
-        return m_isFocused;
+    if(e.type == sf::Event::MouseButtonPressed) {
+      if(m_boundingBox.contains(e.mouseButton.x, e.mouseButton.y)) {
+        this->setFocus(true);
+      } else {
+        this->setFocus(false);
+      }
     }
-    bool Focusable::gainedFox() const
-    {
-        return m_focusGained;
+  }
+  return block;
+}
+void
+Focusable::setFocus(bool state) {
+  if(m_isFocused) {
+    if(!state) {
+      m_focusLost = true;
+      m_onFocusLost();
+      D_onFocusLost();
     }
-    bool Focusable::lostFocus() const
-    {
-        return m_focusLost;
+  } else {
+    if(state) {
+      m_focusGained = true;
+      m_onFocusGained();
+      D_onFocusGained();
     }
-    Nano::signal<void()>& Focusable::onFocusGained()
-    {
-        return m_onFocusGained;
-    }
-    Nano::signal<void()>& Focusable::onFocusLost()
-    {
-        return m_onFocusLost;
-    }
-    void Focusable::D_onFocusGained()
-    {
-    
-    }
-    void Focusable::D_onFocusLost()
-    {
-    
-    }
+  }
+  m_isFocused = state;
+}
+void
+Focusable::setNextFocusable(Focusable* next) {
+  m_nextFocusable = next;
+}
+void
+Focusable::focusToNext() {
+  if(m_nextFocusable) {
+    this->setFocus(false);
+    m_nextFocusable->setFocus(true);
+  }
+}
+bool
+Focusable::isFocused() const {
+  return m_isFocused;
+}
+bool
+Focusable::gainedFox() const {
+  return m_focusGained;
+}
+bool
+Focusable::lostFocus() const {
+  return m_focusLost;
+}
+Nano::signal<void()>&
+Focusable::onFocusGained() {
+  return m_onFocusGained;
+}
+Nano::signal<void()>&
+Focusable::onFocusLost() {
+  return m_onFocusLost;
+}
+void
+Focusable::D_onFocusGained() {}
+void
+Focusable::D_onFocusLost() {}
 }

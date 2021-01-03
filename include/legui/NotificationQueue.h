@@ -1,21 +1,20 @@
 #pragma once
 
-#include <stack>
 #include <legui/NotificationData.h>
+#include <stack>
 
-namespace legui
-{
-    class NotificationQueue
-    {
-        public:
-            static const NotificationData& top();
-            static bool newNotifications();
-            static void pop();
-            static void push(const NotificationData &data);
-        private:
-            NotificationQueue();
-            ~NotificationQueue();
+namespace legui {
+class NotificationQueue {
+  public:
+  static const NotificationData& top();
+  static bool newNotifications();
+  static void pop();
+  static void push(const NotificationData& data);
 
-            static std::stack<NotificationData> m_notifications;
-    };
+  private:
+  NotificationQueue();
+  ~NotificationQueue();
+
+  static std::stack<NotificationData> m_notifications;
+};
 }
